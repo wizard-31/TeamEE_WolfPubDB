@@ -4,8 +4,8 @@ import java.sql.*;
 public class DBHelper {
 
     static final String jdbcURL = "jdbc:mariadb://classdb2.csc.ncsu.edu:3306/<unity>";
-    static Connection conn = null;
-    private DBHelper() {
+
+    public static Connection getConnection() {
         try {
 
             // Load the driver. This creates an instance of the driver
@@ -13,12 +13,14 @@ public class DBHelper {
             // driver, available to clients.
             Class.forName("org.mariadb.jdbc.Driver");
             String user = "<unity>";
-            String passwd = "<dbpass>";
+            String passwd = "<password>";
             Connection conn = null;
             try {
                 // Get a connection from the first driver in the
                 // DriverManager list that recognizes the URL jdbcURL
                 conn = DriverManager.getConnection(jdbcURL, user, passwd);
+                return conn;
+
             } catch (Exception e) {
                 System.out.println("Exception in DBHelper getConnection()!");
                 e.printStackTrace();
@@ -26,10 +28,7 @@ public class DBHelper {
         } catch(Throwable oops) {
             oops.printStackTrace();
         }
-    }
-
-    public static Connection getConnection() {
-        return conn;
+        return null;
     }
 
     static void close(Connection conn) {

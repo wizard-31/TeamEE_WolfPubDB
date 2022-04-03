@@ -18,6 +18,7 @@ public class WolfPubMain {
             System.out.println("5. Exit");
             System.out.println();
 
+            System.out.println("Please enter your input: ");
             choice = scanner.nextInt();
 
             switch(choice) {
