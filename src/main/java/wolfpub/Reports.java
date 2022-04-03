@@ -7,7 +7,7 @@ public class Reports {
         Scanner scanner = new Scanner(System.in);
         int choice = 1;
         while (choice != 12) {
-            System.out.println("Welcome to the Wolfpub REPORTS! Please make your choice from the options below:\n");
+            System.out.println("\n\nWelcome to the Wolfpub REPORTS! Please make your choice from the options below:\n");
             System.out.println("1. Generate monthly reports: number and total price of copies of each publication bought per distributor per month;");
             System.out.println("2. Total revenue of the publishing house");
             System.out.println("3. Total expenses (i.e., shipping costs and salaries)");
@@ -70,7 +70,7 @@ public class Reports {
                     break;
 
                 case 12:
-                    System.out.println("Going back to main menu...");
+                    System.out.println("Going back to main menu...\n");
                     return;
 
                 default:

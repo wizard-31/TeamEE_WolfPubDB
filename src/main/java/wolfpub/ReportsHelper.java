@@ -1,37 +1,87 @@
 package main.java.wolfpub;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ReportsHelper {
 
-    public static void printResultSet( ResultSet rs) {
-        try {
-            ResultSetMetaData rs_md = rs.getMetaData();
-            int noCols = rs_md.getColumnCount();
+    public static ArrayList<String[]> rsToList(ResultSet rs) throws SQLException {
+        ResultSetMetaData rsmd = rs.getMetaData();
+        int noCols = rsmd.getColumnCount();
+        ArrayList<String[]> rsAsString = new ArrayList<>();
 
-            for (int i = 1; i <= noCols; i++) {
-                System.out.print(rs_md.getColumnLabel(i) + " ");
-            }
-            System.out.println();
-            while (rs.next()) {
-                for (int i = 1; i <= noCols; i++) {
-                    System.out.print(rs.getString(i) + " ");
-                }
-                System.out.println();
-            }
-        } catch(Exception e) {
-            e.printStackTrace();
+        String[] headers = new String[noCols];
+        for(int i = 1; i <= noCols; i++)
+            headers[i - 1] = rsmd.getColumnLabel(i);
+        rsAsString.add(headers);
+
+        while(rs.next()) {
+            String[] addToList = new String[noCols];
+            for(int i = 1; i <= noCols; i++)
+                addToList[i - 1] = rs.getString(i);
+            rsAsString.add(addToList);
         }
+        System.out.println("rs list has " + rsAsString.size() + " rows");
+        return rsAsString;
     }
 
-    public static void executeQuery1() {
+    public static int getColSize(ArrayList<String[]> rsList, int colNo) {
+        int size = Integer.MIN_VALUE;
+        for(String[] arr : rsList) {
+            if(size < arr[colNo].length())
+                size = arr[colNo].length();
+        }
+        return size;
+    }
+
+    public static void printResultSet(ArrayList<String[]> rsList) {
+
+        int noCols = rsList.get(0).length;
+        int[] colSizes = new int[noCols];
+
+        int totalLen = 0;
+        for (int i = 0; i < noCols; i++) {
+            colSizes[i] = getColSize(rsList, i);
+            totalLen += colSizes[i] + 4;
+        }
+
+        System.out.println();
+        boolean headersPrinted = false;
+        for(String[] starr : rsList) {
+
+            if(!headersPrinted) {
+                for(int i = 0; i < totalLen; i++) System.out.print("-");
+                System.out.println();
+            }
+
+            for (int i = 0; i < noCols; i++) {
+                int spacingsize = colSizes[i] - starr[i].length() + 1;
+                String spaces = "";
+                for(int j = 0; j < spacingsize; j++) spaces += " ";
+                System.out.print("| " + spaces + starr[i] + " ");
+            }
+
+            System.out.print("|\n");
+            if(!headersPrinted) {
+                headersPrinted = true;
+                for(int i = 0; i < totalLen; i++) System.out.print("-");
+                System.out.println();
+            }
+        }
+        for(int i = 0; i < totalLen; i++) System.out.print("-");
+        System.out.println();
+        return;
+    }
+
+        public static void executeQuery1() {
         try {
             Connection conn = DBHelper.getConnection();
             Statement selectStmt = conn.createStatement();
             ResultSet rs = selectStmt.executeQuery("Select distributor_id,date_format(order_date, '%b-%y') as order_date, sum(quantity), round(sum(quantity*cost),2) totalcost from orders group by year(order_date), month(order_date),date_format(order_date, '%b-%y'),distributor_id;");
-        printResultSet(rs);
-        DBHelper.close(conn);
+            ArrayList<String[]> rsList = rsToList(rs);
+            printResultSet(rsList);
+            DBHelper.close(conn);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -42,7 +92,8 @@ public class ReportsHelper {
             Connection conn = DBHelper.getConnection();
             Statement selectStmt = conn.createStatement();
             ResultSet rs = selectStmt.executeQuery("select sum(cost) from orders;");
-            printResultSet(rs);
+            ArrayList<String[]> rsList = rsToList(rs);
+            printResultSet(rsList);
             DBHelper.close(conn);
 
         } catch (Exception e) {
@@ -55,7 +106,9 @@ public class ReportsHelper {
             Connection conn = DBHelper.getConnection();
             Statement selectStmt = conn.createStatement();
             ResultSet rs = selectStmt.executeQuery(" select sum(t1.cost) from ( (select sum(shipping_cost) cost from orders) union all (select sum(salary) cost from payments)) t1;");
-            printResultSet(rs);
+            ArrayList<String[]> rsList = rsToList(rs);
+            printResultSet(rsList);
+
             DBHelper.close(conn);
 
         } catch (Exception e) {
@@ -67,7 +120,8 @@ public class ReportsHelper {
             Connection conn = DBHelper.getConnection();
             Statement selectStmt = conn.createStatement();
             ResultSet rs = selectStmt.executeQuery("select round(sum(cost),2) revenue from orders;");
-            printResultSet(rs);
+            ArrayList<String[]> rsList = rsToList(rs);
+            printResultSet(rsList);
             DBHelper.close(conn);
 
         } catch (Exception e) {
@@ -79,7 +133,8 @@ public class ReportsHelper {
             Connection conn = DBHelper.getConnection();
             Statement selectStmt = conn.createStatement();
             ResultSet rs = selectStmt.executeQuery(" select sum(salary) from payments;");
-            printResultSet(rs);
+            ArrayList<String[]> rsList = rsToList(rs);
+            printResultSet(rsList);
             DBHelper.close(conn);
 
         } catch (Exception e) {
@@ -91,7 +146,8 @@ public class ReportsHelper {
             Connection conn = DBHelper.getConnection();
             Statement selectStmt = conn.createStatement();
             ResultSet rs = selectStmt.executeQuery(" select count(distributor_id) from distributor;");
-            printResultSet(rs);
+            ArrayList<String[]> rsList = rsToList(rs);
+            printResultSet(rsList);
             DBHelper.close(conn);
 
         } catch (Exception e) {
@@ -103,7 +159,8 @@ public class ReportsHelper {
             Connection conn = DBHelper.getConnection();
             Statement selectStmt = conn.createStatement();
             ResultSet rs = selectStmt.executeQuery("select city, round(sum(cost),2) as city_cost from orders natural join distributor group by city;");
-            printResultSet(rs);
+            ArrayList<String[]> rsList = rsToList(rs);
+            printResultSet(rsList);
             DBHelper.close(conn);
 
         } catch (Exception e) {
@@ -115,7 +172,8 @@ public class ReportsHelper {
             Connection conn = DBHelper.getConnection();
             Statement selectStmt = conn.createStatement();
             ResultSet rs = selectStmt.executeQuery("select distributor.name, round(sum(cost),2) as distributor_cost from orders natural join distributor group by orders.distributor_id;");
-            printResultSet(rs);
+            ArrayList<String[]> rsList = rsToList(rs);
+            printResultSet(rsList);
             DBHelper.close(conn);
 
         } catch (Exception e) {
@@ -127,7 +185,8 @@ public class ReportsHelper {
             Connection conn = DBHelper.getConnection();
             Statement selectStmt = conn.createStatement();
             ResultSet rs = selectStmt.executeQuery("select distributor.address as location , round(sum(cost),2) as location_cost from orders natural join distributor group by distributor.address;");
-            printResultSet(rs);
+            ArrayList<String[]> rsList = rsToList(rs);
+            printResultSet(rsList);
             DBHelper.close(conn);
 
         } catch (Exception e) {
@@ -151,7 +210,8 @@ public class ReportsHelper {
             selectStmt.setString(2, endDate);
 
             ResultSet rs = selectStmt.executeQuery();
-            printResultSet(rs);
+            ArrayList<String[]> rsList = rsToList(rs);
+            printResultSet(rsList);
             DBHelper.close(conn);
 
         } catch (Exception e) {
@@ -163,7 +223,8 @@ public class ReportsHelper {
             Connection conn = DBHelper.getConnection();
             Statement selectStmt = conn.createStatement();
             ResultSet rs = selectStmt.executeQuery("select sum(salary),type from payments natural join staff where payments.staff_id=staff.staff_id group by type;");
-            printResultSet(rs);
+            ArrayList<String[]> rsList = rsToList(rs);
+            printResultSet(rsList);
             DBHelper.close(conn);
 
         } catch (Exception e) {
