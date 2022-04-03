@@ -2,13 +2,15 @@ package main.java.wolfpub;
 
 import java.sql.Connection;
 import java.util.Scanner;
+import main.java.wolfpub.*;
+import main.java.wolfpub.menu.Reports;
 
 public class WolfPubMain {
     public static void main(String[] arg) {
         Scanner scanner = new Scanner(System.in);
 
         int choice = 1;
-        while(choice != 5) {
+        loop: while(choice != 5) {
             System.out.println("Welcome to the Wolfpub Application! Please make your choice from the options below:\n");
 
             System.out.println("1. Editing and Publishing");
@@ -41,9 +43,7 @@ public class WolfPubMain {
                     break;
 
                 case 5:
-                    Connection conn = DBHelper.getConnection();
-                    DBHelper.close(conn);
-                    break;
+                    break loop;
 
                 default:
                     System.out.println("Invalid option entered! Please enter a valid option.\n");

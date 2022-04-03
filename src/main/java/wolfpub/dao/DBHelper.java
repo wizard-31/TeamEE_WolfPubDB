@@ -1,9 +1,10 @@
-package main.java.wolfpub;
+package main.java.wolfpub.dao;
+
 import java.sql.*;
 
 public class DBHelper {
 
-    static final String jdbcURL = "jdbc:mariadb://classdb2.csc.ncsu.edu:3306/<unity>";
+    static final String jdbcURL = "jdbc:mariadb://classdb2.csc.ncsu.edu:3306/sbabu";
 
     public static Connection getConnection() {
         try {
@@ -12,8 +13,8 @@ public class DBHelper {
             // and calls the registerDriver method to make MariaDB Thin
             // driver, available to clients.
             Class.forName("org.mariadb.jdbc.Driver");
-            String user = "<unity>";
-            String passwd = "<password>";
+            String user = "sbabu";
+            String passwd = "athithya1997";
             Connection conn = null;
             try {
                 // Get a connection from the first driver in the
@@ -31,7 +32,7 @@ public class DBHelper {
         return null;
     }
 
-    static void close(Connection conn) {
+    public static void close(Connection conn) {
         if(conn != null) {
             try { conn.close(); } catch(Throwable whatever) {}
         }

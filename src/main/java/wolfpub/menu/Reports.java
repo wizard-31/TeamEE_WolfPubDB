@@ -1,4 +1,6 @@
-package main.java.wolfpub;
+package main.java.wolfpub.menu;
+
+import main.java.wolfpub.dao.ReportsHelper;
 
 import java.util.Scanner;
 

@@ -1,4 +1,6 @@
-package main.java.wolfpub;
+package main.java.wolfpub.dao;
+
+import main.java.wolfpub.dao.DBHelper;
 
 import java.sql.*;
 import java.util.ArrayList;
