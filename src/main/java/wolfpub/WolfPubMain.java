@@ -1,5 +1,6 @@
 package main.java.wolfpub;
 
+import java.sql.Connection;
 import java.util.Scanner;
 
 public class WolfPubMain {
@@ -35,10 +36,12 @@ public class WolfPubMain {
 
                 case 4:
                     System.out.println("Going to Reports...\n");
-                    //TO DO: add call for reports
+                    Reports.run();
                     break;
 
                 case 5:
+                    Connection conn = DBHelper.getConnection();
+                    DBHelper.close(conn);
                     break;
 
                 default:
