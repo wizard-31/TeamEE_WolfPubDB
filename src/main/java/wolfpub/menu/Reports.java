@@ -79,7 +79,7 @@ public class Reports {
                     System.out.println("Invalid option entered! Please enter a valid option.\n");
             }
         }
-
+        scanner.close();
         return;
 
     }
