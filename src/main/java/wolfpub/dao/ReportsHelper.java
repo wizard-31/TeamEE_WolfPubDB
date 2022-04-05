@@ -199,10 +199,10 @@ public class ReportsHelper {
         try {
 
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter the start date to view salaries: ");
+            System.out.println("Enter the start date(yyyy/mm/dd)  to view salaries: ");
             String startDate = scanner.nextLine();
 
-            System.out.println("Enter the end date to view salaries: ");
+            System.out.println("Enter the end date(yyyy/mm/dd) to view salaries: ");
             String endDate = scanner.nextLine();
 
             Connection conn = DBHelper.getConnection();
