@@ -29,9 +29,9 @@ public class WolfPubMain {
                     break;
 
                 case 2:
-                    //TO DO: add call Production of book edtion or publication issue
+                    System.out.println("Going to Book Production...\n");
+                    //BookProduction.run();
                     break;
-
 
                 case 3:
                     //TO DO: add call Distribution

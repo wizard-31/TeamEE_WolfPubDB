@@ -4,17 +4,16 @@ import java.sql.*;
 
 public class DBHelper {
 
-    static final String jdbcURL = "jdbc:mariadb://classdb2.csc.ncsu.edu:3306/sbabu";
+    static final String jdbcURL = DBConnection.getDBURL();
 
     public static Connection getConnection() {
         try {
-
             // Load the driver. This creates an instance of the driver
             // and calls the registerDriver method to make MariaDB Thin
             // driver, available to clients.
             Class.forName("org.mariadb.jdbc.Driver");
-            String user = "sbabu";
-            String passwd = "athithya1997";
+            String user = DBConnection.getUsername();
+            String passwd = DBConnection.getPassword();
             Connection conn = null;
             try {
                 // Get a connection from the first driver in the
