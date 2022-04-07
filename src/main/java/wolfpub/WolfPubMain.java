@@ -3,6 +3,7 @@ package main.java.wolfpub;
 import java.sql.Connection;
 import java.util.Scanner;
 import main.java.wolfpub.*;
+import main.java.wolfpub.menu.Distribution;
 import main.java.wolfpub.menu.Reports;
 
 public class WolfPubMain {
@@ -34,7 +35,8 @@ public class WolfPubMain {
                     break;
 
                 case 3:
-                    //TO DO: add call Distribution
+                    System.out.println("Going to Distribution...\n");
+                    Distribution.run();
                     break;
 
                 case 4:

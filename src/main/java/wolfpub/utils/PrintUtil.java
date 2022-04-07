@@ -30,7 +30,7 @@ public class PrintUtil {
     public static int getColSize(ArrayList<String[]> rsList, int colNo) {
         int size = Integer.MIN_VALUE;
         for(String[] arr : rsList) {
-            if(size < arr[colNo].length())
+            if(arr[colNo] != null && size < arr[colNo].length())
                 size = arr[colNo].length();
         }
         return size;
