@@ -23,17 +23,17 @@ public class PrintUtil {
                 addToList[i - 1] = rs.getString(i);
             rsAsString.add(addToList);
         }
-        System.out.println("rs list has " + rsAsString.size() + " rows");
+//        System.out.println("rs list has " + rsAsString.size() + " rows");
         return rsAsString;
     }
 
     public static int getColSize(ArrayList<String[]> rsList, int colNo) {
-        int size = Integer.MIN_VALUE;
+        int size = 4;
         for(String[] arr : rsList) {
             if(arr[colNo] != null && size < arr[colNo].length())
                 size = arr[colNo].length();
         }
-        return size;
+        return size + 2;
     }
 
     public static void printResultSet(ArrayList<String[]> rsList) {
@@ -44,7 +44,7 @@ public class PrintUtil {
         int totalLen = 0;
         for (int i = 0; i < noCols; i++) {
             colSizes[i] = getColSize(rsList, i);
-            totalLen += colSizes[i] + 4;
+            totalLen += colSizes[i] + 2;
         }
 
         System.out.println();
@@ -57,9 +57,9 @@ public class PrintUtil {
             }
 
             for (int i = 0; i < noCols; i++) {
-                int spacingsize = colSizes[i] - starr[i].length() + 1;
-                String spaces = "";
-                for(int j = 0; j < spacingsize; j++) spaces += " ";
+                int spacingSize = colSizes[i] - (starr[i] == null ? 5 : starr[i].length() + 1);
+                StringBuilder spaces = new StringBuilder();
+                for(int j = 0; j < spacingSize; j++) spaces.append(" ");
                 System.out.print("| " + spaces + starr[i] + " ");
             }
 
