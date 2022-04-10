@@ -2,7 +2,7 @@ package main.java.wolfpub.dbobject;
 
 import java.util.Date;
 
-public class Books
+public class Book
 {
     private Integer Publication_ID;
     private String Publication_Type;
@@ -12,7 +12,7 @@ public class Books
     private String ISBN;
     private String Edition;
 
-    public Books(Integer publication_ID, String publication_Type, String topic, String title, Date publication_Date, String ISBN, String edition)
+    public Book(Integer publication_ID, String publication_Type, String topic, String title, Date publication_Date, String ISBN, String edition)
     {
         this.Publication_ID = publication_ID;
         this.Publication_Type = publication_Type;
@@ -24,11 +24,11 @@ public class Books
     }
 
     //Initializing Getters and Setters
-    public Integer getPublication_ID() { return Publication_ID; }
-    public void setPublication_ID(Integer publication_ID) { this.Publication_ID = publication_ID; }
-
-    public String getPublication_Type() { return Publication_Type; }
-    public void setPublication_Type(String publication_Type) { this.Publication_Type = publication_Type; }
+//    public Integer getPublication_ID() { return Publication_ID; }
+//    public void setPublication_ID(Integer publication_ID) { this.Publication_ID = publication_ID; }
+//
+//    public String getPublication_Type() { return Publication_Type; }
+//    public void setPublication_Type(String publication_Type) { this.Publication_Type = publication_Type; }
 
     public String getTopic() { return Topic; }
     public void setTopic(String topic) { this.Topic = topic; }

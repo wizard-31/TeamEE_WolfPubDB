@@ -3,6 +3,7 @@ package main.java.wolfpub;
 import java.sql.Connection;
 import java.util.Scanner;
 import main.java.wolfpub.*;
+import main.java.wolfpub.menu.Books;
 import main.java.wolfpub.menu.Reports;
 
 public class WolfPubMain {
@@ -30,7 +31,7 @@ public class WolfPubMain {
 
                 case 2:
                     System.out.println("Going to Book Production...\n");
-                    //BookProduction.run();
+                    Books.run();
                     break;
 
                 case 3:
