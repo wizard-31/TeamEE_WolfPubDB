@@ -14,15 +14,15 @@ import static main.java.wolfpub.utils.PrintUtil.rsToList;
 
 public class DistributionHelper {
 
-    static String insertDistributorSql = "INSERT INTO `distributor` (`phone_number`, `address`, `name`, `remaining_balance`, `city`, `type`, `contact_person`) VALUES ('%s', '%s', '%s', %f, '%s', '%s', '%s');";
-    static String updateDistributorSql = "UPDATE `distributor` \n" +
+    final static String insertDistributorSql = "INSERT INTO `distributor` (`phone_number`, `address`, `name`, `remaining_balance`, `city`, `type`, `contact_person`) VALUES ('%s', '%s', '%s', %f, '%s', '%s', '%s');";
+    final static String updateDistributorSql = "UPDATE `distributor` \n" +
             "SET `phone_number` = '%s', `address` = '%s', `name` = '%s', `remaining_balance` = '%f', `city` = '%s', `type` = '%s', `contact_person` = '%s'\n" +
             "WHERE `distributor_id` = %d;";
-    static String deleteDistributorSql = "DELETE FROM `distributor` WHERE `distributor_id` = %d;";
-    static String selectDistributorSql = "SELECT * FROM `distributor` WHERE `distributor_id` = %d;";
-    static String insertOrderSql = "INSERT INTO `orders` (`cost`, `shipping_cost`, `quantity`, `order_date`, `publication_id`, `distributor_id`, `delivery_date`) VALUES (%f, %f, %d, '%s', %d, %d, '%s');";
-    static String billOrderSql = "UPDATE distributor SET remaining_balance = remaining_balance + (select shipping_cost + cost from orders where order_id = %d) WHERE distributor_id= (select distributor_id from orders where order_id = %d);";
-    static String changeBalanceSql = "UPDATE distributor SET remaining_balance = remaining_balance - (select shipping_cost + cost from orders where order_id = %d) WHERE distributor_id= (select distributor_id from orders where order_id = %d);";
+    final static String deleteDistributorSql = "DELETE FROM `distributor` WHERE `distributor_id` = %d;";
+    final static String selectDistributorSql = "SELECT * FROM `distributor` WHERE `distributor_id` = %d;";
+    final static String insertOrderSql = "INSERT INTO `orders` (`cost`, `shipping_cost`, `quantity`, `order_date`, `publication_id`, `distributor_id`, `delivery_date`) VALUES (%f, %f, %d, '%s', %d, %d, '%s');";
+    final static String billOrderSql = "UPDATE distributor SET remaining_balance = remaining_balance + (select shipping_cost + cost from orders where order_id = %d) WHERE distributor_id= (select distributor_id from orders where order_id = %d);";
+    final static String changeBalanceSql = "UPDATE distributor SET remaining_balance = remaining_balance - (select shipping_cost + cost from orders where order_id = %d) WHERE distributor_id= (select distributor_id from orders where order_id = %d);";
 
     public static void showDistributors() {
         try {
