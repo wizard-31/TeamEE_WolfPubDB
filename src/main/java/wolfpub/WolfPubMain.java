@@ -1,13 +1,17 @@
 package main.java.wolfpub;
 
+import java.sql.Connection;
 import java.util.Scanner;
+import main.java.wolfpub.*;
+import main.java.wolfpub.menu.Distribution;
+import main.java.wolfpub.menu.Reports;
 
 public class WolfPubMain {
     public static void main(String[] arg) {
         Scanner scanner = new Scanner(System.in);
 
         int choice = 1;
-        while(choice != 5) {
+        loop: while(choice != 5) {
             System.out.println("Welcome to the Wolfpub Application! Please make your choice from the options below:\n");
 
             System.out.println("1. Editing and Publishing");
@@ -17,6 +21,7 @@ public class WolfPubMain {
             System.out.println("5. Exit");
             System.out.println();
 
+            System.out.println("Please enter your input: ");
             choice = scanner.nextInt();
 
             switch(choice) {
@@ -25,27 +30,29 @@ public class WolfPubMain {
                     break;
 
                 case 2:
-                    //TO DO: add call Production of book edtion or publication issue
+                    System.out.println("Going to Book Production...\n");
+                    //BookProduction.run();
                     break;
 
-
                 case 3:
-                    //TO DO: add call Distribution
+                    System.out.println("Going to Distribution...\n");
+                    Distribution.run();
                     break;
 
                 case 4:
                     System.out.println("Going to Reports...\n");
-                    //TO DO: add call for reports
+                    Reports.run();
                     break;
 
                 case 5:
-                    break;
+                    break loop;
 
                 default:
                     System.out.println("Invalid option entered! Please enter a valid option.\n");
             }
 
         }
+        scanner.close();
         return;
     }
 }
