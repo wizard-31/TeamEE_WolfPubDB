@@ -2,21 +2,21 @@ package main.java.wolfpub.dbobject;
 
 public class EditedBy
 {
-    private Integer Publication_ID;
-    private Integer Staff_ID;
+    private Integer publication_Id;
+    private Integer staff_Id;
 
     public EditedBy(Integer publication_ID, Integer staff_ID)
     {
-        this.Publication_ID = publication_ID;
-        this.Staff_ID = staff_ID;
+        this.publication_Id = publication_ID;
+        this.staff_Id = staff_ID;
     }
 
     //Initializing Getters and Setters
-    public Integer getPublication_ID() { return Publication_ID; }
-    public void setPublication_ID(Integer publication_ID) { this.Publication_ID = publication_ID; }
+    public Integer getPublication_ID() { return publication_Id; }
+    public void setPublication_ID(Integer publication_ID) { this.publication_Id = publication_ID; }
 
-    public Integer getStaff_ID() { return Staff_ID; }
-    public void setStaff_ID(Integer staff_ID) { this.Staff_ID = staff_ID; }
+    public Integer getStaff_ID() { return staff_Id; }
+    public void setStaff_ID(Integer staff_ID) { this.staff_Id = staff_ID; }
     
     public static String getMeta() {
         return "( publication_id, staff_id)";
@@ -25,11 +25,11 @@ public class EditedBy
     public String toString() {
         String res = "(";
         res = res + "'";
-        res = res + Publication_ID;
+        res = res + publication_Id;
         res = res + "'";
         res = res + ",";
         res = res + "'";
-        res = res + Staff_ID;
+        res = res + staff_Id;
         res = res + "'";
   
         res = res + ")";
@@ -38,8 +38,8 @@ public class EditedBy
     
     public void display() {
         System.out.println("Publication Id and Editor Id Details ");
-        System.out.println("PublicationId: " + Publication_ID);
-        System.out.println("Editor Id: " + Staff_ID);
+        System.out.println("PublicationId: " + publication_Id);
+        System.out.println("Editor Id: " + staff_Id);
        
         return;
         

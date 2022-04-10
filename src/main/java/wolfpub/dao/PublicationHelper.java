@@ -252,16 +252,16 @@ public class PublicationHelper {
         System.out.println("Enter Publciation Id");
         Integer publication_id = scanner.nextInt();
        
-        chapter.setPublication_ID(publication_id);
+        chapter.setPublication_Id(publication_id);
         System.out.println("Enter Chapter Id");
         Integer chapter_id = scanner.nextInt();
        
-        chapter.setChapter_ID(chapter_id);
+        chapter.setChapter_Id(chapter_id);
         scanner.nextLine();
         System.out.println("Enter Chapter Text");
        
         String chapter_text = scanner.nextLine();
-        chapter.setChapter_text(chapter_text);
+        chapter.setChapter_Text(chapter_text);
     
    
        
