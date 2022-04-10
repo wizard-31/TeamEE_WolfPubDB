@@ -18,7 +18,8 @@ public class Distribution {
             System.out.println("5. Input orders from distributors");
             System.out.println("6. Bill distributor for an order");
             System.out.println("7. Change outstanding balance of a distributor on receipt of a payment");
-            System.out.println("8. Exit");
+            System.out.println("8. Show orders");
+            System.out.println("9. Exit");
             System.out.println();
 
             choice = scanner.nextInt();
@@ -46,6 +47,9 @@ public class Distribution {
                     DistributionHelper.changeBalance();
                     break;
                 case 8:
+                    DistributionHelper.showOrders();
+                    break;
+                case 9:
                     System.out.println("Going back to main menu...\n");
                     return;
                 default:

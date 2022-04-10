@@ -213,4 +213,17 @@ public class DistributionHelper {
             e.printStackTrace();
         }
     }
+
+    public static void showOrders() {
+        try {
+            Connection conn = DBHelper.getConnection();
+            Statement selectStmt = conn.createStatement();
+            ResultSet rs = selectStmt.executeQuery("Select * from orders;");
+            ArrayList<String[]> rsList = rsToList(rs);
+            printResultSet(rsList);
+            DBHelper.close(conn);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
