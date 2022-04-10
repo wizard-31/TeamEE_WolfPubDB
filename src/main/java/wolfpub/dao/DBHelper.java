@@ -1,10 +1,13 @@
 package main.java.wolfpub.dao;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class DBHelper {
 
-    static final String jdbcURL = "jdbc:mariadb://classdb2.csc.ncsu.edu:3306/sbabu";
+    static final String jdbcURL = "jdbc:mariadb://classdb2.csc.ncsu.edu:3306/hselvar2";
 
     public static Connection getConnection() {
         try {
@@ -13,8 +16,8 @@ public class DBHelper {
             // and calls the registerDriver method to make MariaDB Thin
             // driver, available to clients.
             Class.forName("org.mariadb.jdbc.Driver");
-            String user = "sbabu";
-            String passwd = "athithya1997";
+            String user = "hselvar2";
+            String passwd = "200366498";
             Connection conn = null;
             try {
                 // Get a connection from the first driver in the
@@ -30,6 +33,36 @@ public class DBHelper {
             oops.printStackTrace();
         }
         return null;
+    }
+    
+    public static int executeUpdate(String query) throws SQLException {
+        try(Connection conn = getConnection();
+            Statement stmt = conn.createStatement();
+        ) {
+            return stmt.executeUpdate(query);
+        }
+    }
+    
+    public static List<Object[]> executeQueryUpdated(String query) throws SQLException {
+        try(Connection conn = getConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+        ) {
+            List<Object[]> resultList = new ArrayList();
+            ResultSetMetaData resultSetMetaData = rs.getMetaData();
+            int count = resultSetMetaData.getColumnCount();
+            while(rs.next()) {
+                Object[] items = new Object[count];
+                for(int i=0; i< count; i++) {
+                    items[i] = rs.getObject(i+1);
+                }
+                resultList.add(items);
+            }
+            return resultList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
     }
 
     public static void close(Connection conn) {

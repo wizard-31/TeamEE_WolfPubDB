@@ -1,7 +1,5 @@
 package main.java.wolfpub.dao;
 
-import main.java.wolfpub.dao.DBHelper;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -198,23 +196,24 @@ public class ReportsHelper {
     public static void executeQuery10() {
         try {
 
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter the start date to view salaries: ");
-            String startDate = scanner.nextLine();
+            try (Scanner scanner = new Scanner(System.in)) {
+				System.out.println("Enter the start date to view salaries: ");
+				String startDate = scanner.nextLine();
 
-            System.out.println("Enter the end date to view salaries: ");
-            String endDate = scanner.nextLine();
+				System.out.println("Enter the end date to view salaries: ");
+				String endDate = scanner.nextLine();
 
-            Connection conn = DBHelper.getConnection();
-            PreparedStatement selectStmt = conn.prepareStatement("select sum(salary) from payments natural join staff where payments.staff_id=staff.staff_id and payments.date_claimed between  ? and  ? ;");
+				Connection conn = DBHelper.getConnection();
+				PreparedStatement selectStmt = conn.prepareStatement("select sum(salary) from payments natural join staff where payments.staff_id=staff.staff_id and payments.date_claimed between  ? and  ? ;");
 
-            selectStmt.setString(1, startDate);
-            selectStmt.setString(2, endDate);
+				selectStmt.setString(1, startDate);
+				selectStmt.setString(2, endDate);
 
-            ResultSet rs = selectStmt.executeQuery();
-            ArrayList<String[]> rsList = rsToList(rs);
-            printResultSet(rsList);
-            DBHelper.close(conn);
+				ResultSet rs = selectStmt.executeQuery();
+				ArrayList<String[]> rsList = rsToList(rs);
+				printResultSet(rsList);
+				DBHelper.close(conn);
+			}
 
         } catch (Exception e) {
             e.printStackTrace();
