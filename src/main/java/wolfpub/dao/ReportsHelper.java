@@ -1,12 +1,12 @@
 package main.java.wolfpub.dao;
 
-import main.java.wolfpub.dao.DBHelper;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 import static main.java.wolfpub.utils.PrintUtil.*;
 
+import static main.java.wolfpub.utils.PrintUtil.printResultSet;
+import static main.java.wolfpub.utils.PrintUtil.rsToList;
 public class ReportsHelper {
         public static void executeQuery1() {
         try {
@@ -131,10 +131,10 @@ public class ReportsHelper {
         try {
 
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Enter the start date to view salaries: ");
+            System.out.println("Enter the start date(yyyy/mm/dd)  to view salaries: ");
             String startDate = scanner.nextLine();
 
-            System.out.println("Enter the end date to view salaries: ");
+            System.out.println("Enter the end date(yyyy/mm/dd) to view salaries: ");
             String endDate = scanner.nextLine();
 
             Connection conn = DBHelper.getConnection();
