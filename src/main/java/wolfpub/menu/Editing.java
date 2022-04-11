@@ -3,6 +3,7 @@ package main.java.wolfpub.menu;
 import java.util.Scanner;
 
 import main.java.wolfpub.WolfPubMain;
+import main.java.wolfpub.dao.PublicationDAO;
 import main.java.wolfpub.dao.PublicationHelper;
 
 public class Editing {
@@ -12,11 +13,12 @@ public class Editing {
 			while (choice != 12) {
 			    System.out.println("\n\nWelcome to the Wolfpub Editing and Publishing! Please make your choice from the options below:\n");
 			    System.out.println("1. Enter basic information on a new publication;");
-			    System.out.println("2. Update Information");
-			    System.out.println("3. Assign Editor to a Publication");
-			    System.out.println("4. View the publication that Editor is responsible for");
-			    System.out.println("5. Edit table of contents of a publication, by adding/deleting articles or chapters");
-			    System.out.println("6. Exit");
+			    System.out.println("2. Show all Publication");
+			    System.out.println("3. Update Information");
+			    System.out.println("4. Assign Editor to a Publication");
+			    System.out.println("5. View the publication that Editor is responsible for");
+			    System.out.println("6. Edit table of contents of a publication, by adding/deleting articles or chapters");
+			    System.out.println("7. Exit");
 			    System.out.println();
 
 			    choice = scanner.nextInt();
@@ -25,20 +27,23 @@ public class Editing {
 			        case 1:
 			        	PublicationHelper.run();
 			            break;
-
 			        case 2:
+			        	PublicationDAO.show();
+			            break;
+
+			        case 3:
 			        	
 			        	PublicationHelper.search();
 			            break;
-			        case 3:
+			        case 4:
 			        	
 			        	PublicationHelper.assign();
 			            break;
-			        case 4:
+			        case 5:
 			        	
 			        	PublicationHelper.view();
 			            break;
-			        case 5:
+			        case 6:
 			        	
 			        	PublicationHelper.tableofcontents();
 			            break;
@@ -46,7 +51,7 @@ public class Editing {
 
 			      
 
-			        case 6:
+			        case 7:
 			            System.out.println("Going back to main menu...\n");
 			            WolfPubMain.main(null);
 			           

@@ -15,7 +15,13 @@ public class Editor
         this.type = type;
     }
 
-    //Initializing Getters and Setters
+  
+
+	public Editor() {
+		// TODO Auto-generated constructor stub
+	}
+
+	//Initializing Getters and Setters
     public Integer getStaff_ID() { return staff_Id; }
     public void setStaff_ID(Integer staff_ID) { this.staff_Id = staff_ID; }
 
@@ -27,4 +33,14 @@ public class Editor
 
     public String getType() { return type; }
     public void setType(String type) { this.type = type; }
+    
+    
+    public void displayEditorIdAndName() {
+        System.out.println("Editor Details");
+        System.out.println("Id: " + staff_Id);
+        System.out.println("Type: " + name);
+   
+        return;
+        
+    }
 }

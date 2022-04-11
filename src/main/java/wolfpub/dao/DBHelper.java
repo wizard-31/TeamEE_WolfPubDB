@@ -39,7 +39,9 @@ public class DBHelper {
         try(Connection conn = getConnection();
             Statement stmt = conn.createStatement();
         ) {
-            return stmt.executeUpdate(query);
+            int ans = stmt.executeUpdate(query);
+            close(conn);
+            return ans;
         }
     }
     
@@ -58,6 +60,7 @@ public class DBHelper {
                 }
                 resultList.add(items);
             }
+            close(conn);
             return resultList;
         } catch (SQLException e) {
             e.printStackTrace();

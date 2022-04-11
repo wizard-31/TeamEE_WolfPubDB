@@ -22,7 +22,7 @@ public class ReportsHelper {
                 addToList[i - 1] = rs.getString(i);
             rsAsString.add(addToList);
         }
-        System.out.println("rs list has " + rsAsString.size() + " rows");
+       // System.out.println("rs list has " + rsAsString.size() + " rows");
         return rsAsString;
     }
 

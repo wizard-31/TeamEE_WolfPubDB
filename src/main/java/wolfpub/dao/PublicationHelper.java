@@ -21,202 +21,286 @@ import java.util.Scanner;
 public class PublicationHelper {
     static Scanner scanner = new Scanner(System.in);
 
-    public static void run(){
+    public static void run() {
         Publication publication = getPublicationDetails();
         PublicationDAO.saveData(publication);
-      
-                WolfPubMain.main(null);
-          
+
+        WolfPubMain.main(null);
+
 
     }
-    
-    
-    public static void tableofcontents(){
-      
+
+    public static void show(Integer id) {
+
+        Publication publication = PublicationDAO.loadById(id);
+        if (publication != null) {
+            publication.display();
+        } else {
+            System.out.println("Publication not found!");
+        }
+        return;
+
+    }
+
+
+
+    public static void search() {
+        System.out.println("1.Enter the Publication Id ");
+
+        Integer id = scanner.nextInt();
+        Publication publication = PublicationDAO.loadById(id);
        
-    	 System.out.println("1. Add Chapter \n2. Add Article \n 3. Link Publication to Article \n 4. Delete Article \n 5. Delete Chapter");
-    	 System.out.println("Enter an Option");
+        if (publication !=null) {
+        	 String publciation_type = publication.getPublication_type();
+            publication.display();
+            System.out.println(publciation_type);
+            PublicationHelper.update(id, publciation_type);
+
+
+        } else
+            System.out.println("Publication Not Found");
+
+
+
+        return;
+
+
+
+
+    }
+
+    public static void update(Integer id, String type) {
+        System.out.println("1.Select the field which need to be changed");
+        System.out.println(" 1. Topic  2. Title  3.Date");
+
         Integer option = scanner.nextInt();
+        scanner.nextLine();
+        switch (option) {
+
+            case 1:
+                System.out.println("1.Enter the Topic");
+                String topicValue = scanner.nextLine();
+                String topic = "topic";
+
+                try {
+                    PublicationDAO.updatePublication(topic, topicValue, id, type);
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+             
+                break;
+
+            case 2:
+                System.out.println("1.Enter the Title");
+                String titleValue = scanner.nextLine();
+                String title = "title";
+                try {
+                    PublicationDAO.updatePublication(title, titleValue, id, type);
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+             
+                break;
+            case 3:
+                System.out.println("1.Enter the Date");
+                String dateValue = scanner.nextLine();
+                String date = "publication_date";
+
+                try {
+                    PublicationDAO.updatePublication(date, dateValue, id, type);
+                } catch (SQLException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+        
+                break;
+        }
+
+        System.out.println("1.Do you need to change any other field 2. Main menu");
+        System.out.println("Enter an option");
+
+        Integer optionAgain = scanner.nextInt();
+        scanner.nextLine();
+        switch (optionAgain) {
+            case 1:
+                update(id, type);
+                break;
+            case 2:
+                WolfPubMain.main(null);
+
+
+        }
+
+        return;
+
+    }
+
+
+    public static void assign() {
+
+
+        PublicationDAO.showEditor();
+        PublicationDAO.showPublication();
+        System.out.println("1. Enter Publication id");
+        Integer publication_id = scanner.nextInt();
+        System.out.println("1. Enter Editor id");
+        Integer editor_id = scanner.nextInt();
+        scanner.nextLine();
+        EditedBy editedBy = new EditedBy(publication_id, editor_id);
+        PublicationDAO.assignEditorPublication(editedBy);
+
+
+    }
+
+    public static void view() {
+
+        System.out.println(" Enter Staff Id or Editor id ");
+        Integer editorId = scanner.nextInt();
+
+        PublicationDAO.loadByEditorId((Integer) editorId);
+        return;
+
+
+
+
+    }
+
+
+
+
+
+
+    public static void tableofcontents() {
+
+
+        System.out.println("1. Add Chapter 2. Add Article  3. Link Publication to Article  4. Delete Article  5. Delete Chapter 6.Show Article 7.Show Chapter");
+        System.out.println("Enter an Option");
+        Integer option = scanner.nextInt();
+        scanner.nextLine();
         switch (option) {
             case 1:
-            	addChapter();
-            	break;
+                addChapter();
+                break;
             case 2:
                 addArticle();
                 break;
             case 3:
-            	linkPublicationArticle();
-            	
-          	 break;
+                linkPublicationArticle();
+
+                break;
             case 4:
                 deleteArticle();
                 break;
             case 5:
                 deleteChapter();
                 break;
-          	 
-          	 
-            	
+            case 6:
+                PublicationDAO.showArticle();
+                break;
+            case 7:
+                PublicationDAO.showChapter();
+                break;
+
+
+
         }
 
     }
-    
-    
-    
-    public static void addChapter(){
+
+
+
+    public static void addChapter() {
         Chapter chapter = getChapterDetails();
-        System.out.println("1. Add Chapter to the Publication \n2. Go Back");
-        Integer option = scanner.nextInt();
-        switch (option) {
-            case 1:
-            	PublicationDAO.insertChapter(chapter);
-            	break;
-            case 2:
-                WolfPubMain.main(null);
-                break;
-        }
+        PublicationDAO.insertChapter(chapter);
+
 
     }
-    
-    
-    public static void addArticle(){
+
+
+    public static void addArticle() {
         Article article = getArticleDetails();
-        System.out.println("1.To Add the  Article \n  2. Go Back \n");
+
+        Integer article_id = PublicationDAO.insertArticle(article);
+        System.out.println("1. Do you also want to insert into publication \n2. Go Back");
         System.out.println("Enter an Option");
-        Integer option = scanner.nextInt();
-        switch (option) {
+        Integer value = scanner.nextInt();
+        switch (value) {
             case 1:
-            	 Integer article_id = PublicationDAO.insertArticle(article);
-            	 System.out.println("1. Do you also want to insert into publication \n2. Go Back");
-            	  System.out.println("Enter an Option");
-            	 Integer value = scanner.nextInt();
-            	 switch (value) {
-                 case 1:
-               
-            	 
-            	 System.out.println(article_id);
-            	 System.out.println("1. Enter the Publication Id ");
-            	 Integer publication_id = scanner.nextInt();
-            	 Contains contains=new Contains(publication_id,article_id);
-            	 PublicationDAO.addPublicationArticle(contains);
-            	 	break;
-                 case 2:
-                	 WolfPubMain.main(null);
-                	 
-                	 break;
-                	 
-                
-            	
-            	 }
-            	 break;
-            
-           	 
+
+
+                System.out.println(article_id);
+                System.out.println("1. Enter the Publication Id ");
+                Integer publication_id = scanner.nextInt();
+                Contains contains = new Contains(publication_id, article_id);
+                PublicationDAO.addPublicationArticle(contains);
+                break;
             case 2:
                 WolfPubMain.main(null);
+
                 break;
+
         }
 
+
+        return;
+
     }
-    
-    
+
+
     public static void linkPublicationArticle() {
-    	 System.out.println("1. Enter the Publication Id ");
-       	 Integer publication_id = scanner.nextInt();
-       	 System.out.println("1. Enter the Article Id ");
-       	 Integer articleValueId=scanner.nextInt();
-       	 Contains contains=new Contains(publication_id,articleValueId);
-       	 PublicationDAO.addPublicationArticle(contains);
-       	 contains.display();
+        System.out.println("1. Enter the Publication Id ");
+        Integer publication_id = scanner.nextInt();
+        System.out.println("1. Enter the Article Id ");
+        Integer articleValueId = scanner.nextInt();
+        Contains contains = new Contains(publication_id, articleValueId);
+        PublicationDAO.addPublicationArticle(contains);
+        contains.display();
     }
-    
-    
-    
+
+
+
     public static void deleteArticle() {
-    	
-       	 System.out.println("1. Enter the Article Id ");
-       	 Integer articleId=scanner.nextInt();
-       	 
-       	
-       	 PublicationDAO.deleteArticle(articleId);
-       
-    	
-    	
-    	
-    }
-    
-    
- public static void deleteChapter() {
-    	
-	 System.out.println("1. Enter the Publication Id ");
-   	 Integer publciationId=scanner.nextInt();
-   	System.out.println("1. Enter the Chapter Id ");
-  	 Integer chapterId=scanner.nextInt();
-   	 
-   	
-   	 PublicationDAO.deleteChapter(publciationId,chapterId);
-   
-    	
-    }
-    public static void view() {
-        System.out.println("1. To Enter Editor Id \n2. Go Back");
-        Integer option = scanner.nextInt();
-        switch (option) {
-            case 1:
-            	 System.out.println(" Enter Staff Id or Editor id ");
-            	  Integer editorId = scanner.nextInt();
-            	  
-            	Publication publication = PublicationDAO.loadById(editorId);
-                if (publication != null) {
-                	publication.display();
-                } else {
-                    System.out.println("Publication not found!");
-                }
-                break;
-            case 2:
-            	WolfPubMain.main(null);
-        }
 
-    }
-    
-    
-    public static void assign(){
-       
-        System.out.println("1. To Assign Editor to Publication \n2. Go Back");
-        System.out.println("Enter an Option");
-        Integer option = scanner.nextInt();
-        switch (option) {
-            case 1:
-            	
-            	 System.out.println("1. Enter Publication id");
-            	 Integer publication_id = scanner.nextInt();
-            	 System.out.println("1. Enter Editor id");
-            	 Integer editor_id = scanner.nextInt();
-            	 scanner.nextLine();
-            	 EditedBy editedBy = new EditedBy(publication_id,editor_id);
-            	PublicationDAO.assignEditorPublication (editedBy);
-            case 2:
-                WolfPubMain.main(null);
-                break;
-        }
+        System.out.println("1. Enter the Article Id ");
+        Integer articleId = scanner.nextInt();
+
+
+        PublicationDAO.deleteArticle(articleId);
+
+
+
 
     }
 
 
-  
-    public static Date readDate(Scanner scanner, String format) throws ParseException{
+    public static void deleteChapter() {
+
+        System.out.println("1. Enter the Publication Id ");
+        Integer publciationId = scanner.nextInt();
+        System.out.println("1. Enter the Chapter Id ");
+        Integer chapterId = scanner.nextInt();
+
+
+        PublicationDAO.deleteChapter(publciationId, chapterId);
+
+
+    }
+    public static Date readDate(Scanner scanner, String format) throws ParseException {
         return (Date) new SimpleDateFormat(format).parse(scanner.nextLine());
-   }
-    
+    }
+
     public static Date StringToDate(String dob) throws ParseException {
         //Instantiating the SimpleDateFormat class
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         //Parsing the given String to Date object
         Date date = formatter.parse(dob);
-        System.out.println("Date object value: "+date);
+        System.out.println("Date object value: " + date);
         return date;
-     }
+    }
     private static Publication getPublicationDetails() {
-    	Publication publication = new Publication();
+        Publication publication = new Publication();
         System.out.println("Enter Publication Type");
         String type = scanner.nextLine();
         publication.setPublication_type(type);
@@ -227,202 +311,70 @@ public class PublicationHelper {
         String title = scanner.nextLine();
         publication.setTitle(title);
         System.out.println("Enter Publication Date");
-       
-        
+
+
         String dateValue = scanner.nextLine();
         //Converting String to Date
         DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         Date myDate = null;
-		try {
-			myDate = formatter.parse(dateValue);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        try {
+            myDate = formatter.parse(dateValue);
+        } catch (ParseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
-        publication.setPublication_date(sqlDate );
-        
-       
+        publication.setPublication_date(sqlDate);
+
+
         return publication;
     }
 
-    
+
     public static Chapter getChapterDetails() {
-    	Chapter chapter = new Chapter();
+        Chapter chapter = new Chapter();
+       
         System.out.println("Enter Publciation Id");
         Integer publication_id = scanner.nextInt();
-       
+
         chapter.setPublication_Id(publication_id);
         System.out.println("Enter Chapter Id");
         Integer chapter_id = scanner.nextInt();
-       
+
         chapter.setChapter_Id(chapter_id);
         scanner.nextLine();
         System.out.println("Enter Chapter Text");
-       
+
         String chapter_text = scanner.nextLine();
         chapter.setChapter_Text(chapter_text);
-    
-   
-       
-       
+
+
+
+
         return chapter;
     }
-    
+
     public static Article getArticleDetails() {
-    	Article article = new Article();
+        Article article = new Article();
         scanner.nextLine();
         System.out.println("Enter Topic");
         String topic = scanner.nextLine();
         article.setTopic(topic);
         System.out.println("Enter Content");
-       
+
         String content = scanner.nextLine();
         article.setContent(content);
-    
-   
-       
-       
+
+
+
+
         return article;
     }
-    
-    
-    
-    public static void show(Integer id) {
-        System.out.println("1. Enter Publication Id \n2. Go Back");
-        Integer option = scanner.nextInt();
-        switch (option) {
-            case 1:
-            	Publication publication = PublicationDAO.loadById(id);
-                if (publication != null) {
-                	publication.display();
-                } else {
-                    System.out.println("Publication not found!");
-                }
-                break;
-            case 2:
-            	WolfPubMain.main(null);
-        }
 
-    }
-    
-    public static void search() {
-        System.out.println("1.Search by Id \n2. Search by Title");
-        Integer option = Integer.parseInt(scanner.nextLine());
-        switch (option) {
-            case 1:
-            	System.out.println("1.Enter id");
-            	Integer id = Integer.parseInt(scanner.nextLine());
-            	Publication publication = PublicationDAO.loadById(id);
-               if (publication != null) {
-                	publication.display();
-                	PublicationHelper.update(id);
-                } else {
-                 
-                }
-            	
-                break;
-                
-            case 2:
-            	System.out.println("1.Enter title");
-            	String title = scanner.next();
-            	
-            	Publication publication1 = PublicationDAO.getPublicationByTitle(title);
-            	
-                if (publication1 != null) {
-                	
-                	publication1.display();
-                	int publication_id= publication1.getPublication_id();
-                	System.out.println(publication_id);
-                	PublicationHelper.update(publication_id );
-                } else {
-                    System.out.println("Publication not found!");
-                }
-                break;
-                
-                
-      
-            	
-        }
 
-    }
-    
-    public static void update(Integer id) {
-        System.out.println("1.Select the field which need to be changed");
-        System.out.println("1.Publication Type /n 2. Topic /n 3. Title /n 4.Date");
-        
-        Integer option = scanner.nextInt();
-        scanner.nextLine();
-        switch (option) {
-            case 1:
-            	System.out.println("1.Enter the Publication Type\n");
-            	
-            	String typeValue=scanner.nextLine();
-            	String type="publication_type";
-            	PublicationDAO.updatePublciation(type,typeValue,id);
-            	Publication publicationType = PublicationDAO.loadById(id);
-                if (publicationType != null) {
-                	publicationType.display();
-                } else {
-                    System.out.println("Publication not found!");
-                }
-                break;
-            case 2:
-            	System.out.println("1.Enter the Topic");
-            	String topicValue=scanner.nextLine();
-            	String topic="topic";
-            	PublicationDAO.updatePublciation(topic,topicValue,id);
-            	Publication publicationTopic = PublicationDAO.loadById(id);
-                if (publicationTopic != null) {
-                	publicationTopic.display();
-                } else {
-                    System.out.println("Publication not found!");
-                }
-                break;
-                
-            case 3:
-            	System.out.println("1.Enter the Title");
-            	String titleValue=scanner.nextLine();
-            	String title="title";
-            	PublicationDAO.updatePublciation(title,titleValue,id);
-            	Publication publicationTitle = PublicationDAO.loadById(id);
-                if (publicationTitle != null) {
-                	publicationTitle.display();
-                } else {
-                    System.out.println("Publication not found!");
-                }
-                break;
-            case 4:
-            	System.out.println("1.Enter the Date");
-            	String dateValue=scanner.nextLine();
-            	String date="publication_date";
-           
-            	PublicationDAO.updatePublciation(date,dateValue,id);
-            	Publication publication3 = PublicationDAO.loadById(id);
-                if (publication3 != null) {
-                	publication3.display();
-                } else {
-                    System.out.println("Publication not found!");
-                }
-                break;
-        }
-        
-        System.out.println("1.Do you need to change any other field 2. Main menu");
-        System.out.println("Enter an option");
-        
-        Integer optionAgain = scanner.nextInt();
-        scanner.nextLine();
-        switch(optionAgain){
-        	case 1:
-        		update(id);
-        		break;
-        	case 2:
-        		WolfPubMain.main(null);
-        		
-        		
-        }
 
-   return;
 
-}
+
+
+
 }
