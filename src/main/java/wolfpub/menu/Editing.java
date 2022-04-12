@@ -12,12 +12,12 @@ public class Editing {
 			int choice = 1;
 			while (choice != 12) {
 			    System.out.println("\n\nWelcome to the Wolfpub Editing and Publishing! Please make your choice from the options below:\n");
-			    System.out.println("1. Enter basic information on a new publication;");
+			    System.out.println("1. Enter basic information on a new publication");
 			    System.out.println("2. Show all Publication");
-			    System.out.println("3. Update Information");
+			    System.out.println("3. Update Information in the Publication");
 			    System.out.println("4. Assign Editor to a Publication");
-			    System.out.println("5. View the publication that Editor is responsible for");
-			    System.out.println("6. Edit table of contents of a publication, by adding/deleting articles or chapters");
+			    System.out.println("5. View the Publication that Editor is responsible for");
+			    System.out.println("6. Edit table of contents of a Publication, by adding/deleting articles or chapters");
 			    System.out.println("7. Exit");
 			    System.out.println();
 
@@ -47,10 +47,6 @@ public class Editing {
 			        	
 			        	PublicationHelper.tableofcontents();
 			            break;
-
-
-			      
-
 			        case 7:
 			            System.out.println("Going back to main menu...\n");
 			            WolfPubMain.main(null);
