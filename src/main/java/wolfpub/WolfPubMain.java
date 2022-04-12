@@ -1,8 +1,6 @@
 package main.java.wolfpub;
 
-import java.sql.Connection;
 import java.util.Scanner;
-import main.java.wolfpub.*;
 import main.java.wolfpub.menu.Books;
 import main.java.wolfpub.menu.Distribution;
 import main.java.wolfpub.menu.Reports;

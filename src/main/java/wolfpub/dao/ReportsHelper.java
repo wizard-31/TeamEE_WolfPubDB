@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import static main.java.wolfpub.utils.PrintUtil.*;
 
-import static main.java.wolfpub.utils.PrintUtil.printResultSet;
-import static main.java.wolfpub.utils.PrintUtil.rsToList;
 public class ReportsHelper {
         public static void executeQuery1() {
         try {

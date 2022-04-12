@@ -13,6 +13,15 @@ public class Chapter
         this.Chapter_text = chapter_text;
     }
 
+    @Override
+    public String toString() {
+        return "Chapter{" +
+                "Publication_ID=" + Publication_ID +
+                ", Chapter_ID=" + Chapter_ID +
+                ", Chapter_text='" + Chapter_text + '\'' +
+                '}';
+    }
+
     //Initializing Getters and Setters
     public Integer getPublication_ID() { return Publication_ID; }
     public void setPublication_ID(Integer publication_ID) { this.Publication_ID = publication_ID; }
