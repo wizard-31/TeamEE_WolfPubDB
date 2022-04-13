@@ -121,6 +121,7 @@ public class BookHelper {
                     System.out.println("Invalid option entered! Please enter a valid option.\n");
             }
         }
+        scanner.close();
     }
 
     public static void displayBookOrIssue() {
@@ -170,6 +171,7 @@ public class BookHelper {
                     System.out.println("Invalid option entered! Please enter a valid option.\n");
             }
         }
+    scanner.close();
     }
 
     public static void updateBookOrIssue() {
@@ -279,7 +281,7 @@ public class BookHelper {
 
                         conn.commit();
 
-                        System.out.println("OP of Queries---" + row1 +" " +row2);
+                        //System.out.println("OP of Queries---" + row1 +" " +row2);
                     } catch (Exception e) {
                         //e.printStackTrace();
                         System.out.println("Transaction Failed. Doing a Rollback.....");
@@ -378,6 +380,7 @@ public class BookHelper {
                     System.out.println("Invalid option entered! Please enter a valid option.\n");
             }
         }
+        scanner.close();
     }
 
     public static void deleteBookOrIssue() {
@@ -415,6 +418,7 @@ public class BookHelper {
                     System.out.println("Invalid option entered! Please enter a valid option.\n");
             }
         }
+        scanner.close();
     }
 
     public static void createChapterOrArticle() {
@@ -483,6 +487,7 @@ public class BookHelper {
                     System.out.println("Invalid option entered! Please enter a valid option.\n");
             }
         }
+        scanner.close();
     }
 
     public static void updateChapterOrArticle() {
@@ -588,6 +593,7 @@ public class BookHelper {
                     System.out.println("Invalid option entered! Please enter a valid option.\n");
             }
         }
+        scanner.close();
     }
 
     public static void insertPaymentEditorAuthor() {
@@ -614,6 +620,7 @@ public class BookHelper {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        scanner.close();
     }
 
     public static void trackPaymentClaims() {
@@ -632,6 +639,7 @@ public class BookHelper {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        scanner.close();
     }
 
     public static void enterAuthorForPublications() {
@@ -725,6 +733,7 @@ public class BookHelper {
                     System.out.println("Invalid option entered! Please enter a valid option.\n");
             }
         }
+        scanner.close();
     }
 
 }
