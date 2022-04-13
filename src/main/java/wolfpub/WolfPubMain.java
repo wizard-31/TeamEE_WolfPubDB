@@ -1,8 +1,8 @@
 package main.java.wolfpub;
 
-import java.sql.Connection;
 import java.util.Scanner;
-import main.java.wolfpub.*;
+import main.java.wolfpub.menu.Books;
+import main.java.wolfpub.menu.Distribution;
 import main.java.wolfpub.menu.Reports;
 import main.java.wolfpub.menu.Editing;
 
@@ -34,12 +34,13 @@ public class WolfPubMain {
 
 
                 case 2:
-                    //TO DO: add call Production of book edtion or publication issue
+                    System.out.println("Going to Book Production...\n");
+                    Books.run();
                     break;
 
-
                 case 3:
-                    //TO DO: add call Distribution
+                    System.out.println("Going to Distribution...\n");
+                    Distribution.run();
                     break;
 
                 case 4:
@@ -55,6 +56,7 @@ public class WolfPubMain {
             }
 
         }
+        scanner.close();
         return;
     }
 }

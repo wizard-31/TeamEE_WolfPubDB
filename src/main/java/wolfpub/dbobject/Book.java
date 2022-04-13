@@ -1,21 +1,39 @@
 package main.java.wolfpub.dbobject;
+
 import java.util.Date;
 
-public class Publication
+public class Book
 {
     private Integer Publication_ID;
     private String Publication_Type;
     private String Topic;
     private String Title;
     private String Publication_Date;
+    private String ISBN;
+    private String Edition;
 
-    public Publication(Integer publication_ID, String publication_Type, String topic, String title, String publication_Date)
+    public Book(Integer publication_ID, String publication_Type, String topic, String title, String publication_Date, String ISBN, String edition)
     {
         this.Publication_ID = publication_ID;
         this.Publication_Type = publication_Type;
         this.Topic = topic;
         this.Title = title;
         this.Publication_Date = publication_Date;
+        this.ISBN = ISBN;
+        this.Edition = edition;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "Publication_ID=" + Publication_ID +
+                ", Publication_Type='" + Publication_Type + '\'' +
+                ", Topic='" + Topic + '\'' +
+                ", Title='" + Title + '\'' +
+                ", Publication_Date='" + Publication_Date + '\'' +
+                ", ISBN='" + ISBN + '\'' +
+                ", Edition='" + Edition + '\'' +
+                '}';
     }
 
     //Initializing Getters and Setters
@@ -33,41 +51,10 @@ public class Publication
 
     public String getPublication_Date() { return Publication_Date; }
     public void setPublication_Date(String publication_Date) { this.Publication_Date = publication_Date; }
-    
-    public void display() {
-        System.out.println("Pulication Details");
-        System.out.println("Id: " + publication_id);
-        System.out.println("Type: " + publication_type);
-        System.out.println("Topic: " + topic);
-        System.out.println("Title: " + title);
-        System.out.println("Publication Date: " + publication_date);
-        return;
-        
-    }
 
-    public String getMeta() {
-        return "( publication_type, topic, title, publication_date)";
-    }
+    public String getISBN() { return ISBN; }
+    public void setISBN(String ISBN) { this.ISBN = ISBN; }
 
-    @Override
-    public String toString() {
-        String res = "(";
-        res = res + "'";
-        res = res + publication_type;
-        res = res + "'";
-        res = res + ",";
-        res = res + "'";
-        res = res + topic;
-        res = res + "'";
-        res = res + ",";
-        res = res + "'";
-        res = res + title;
-        res = res + "'";
-        res = res + ",";
-        res = res + "'";
-        res = res + publication_date;
-        res = res + "'";
-        res = res + ")";
-        return res;
-    }
+    public String getEdition() { return Edition; }
+    public void setEdition(String edition) { this.Edition = edition; }
 }

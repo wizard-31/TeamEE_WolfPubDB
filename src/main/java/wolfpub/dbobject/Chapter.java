@@ -2,45 +2,47 @@ package main.java.wolfpub.dbobject;
 
 public class Chapter
 {
-    private Integer publication_Id;
-    private Integer chapter_Id;
-    private String chapter_Text;
-
-    public Chapter(Integer publication_Id, Integer chapter_Id, String chapter_Text)
+    private Integer Publication_ID;
+    private Integer Chapter_ID;
+    private String Chapter_text;
+  
+    public Chapter(Integer publication_ID, Integer chapter_ID, String chapter_text)
     {
-        this.publication_Id = publication_Id;
-        this.chapter_Id = chapter_Id;
-        this.chapter_Text = chapter_Text;
+        this.Publication_ID = publication_ID;
+        this.Chapter_ID = chapter_ID;
+        this.Chapter_text = chapter_text;
     }
-
-    public Chapter() {
-		// TODO Auto-generated constructor stub
-	}
-
-	//Initializing Getters and Setters
-    public Integer getPublication_Id() { return publication_Id; }
-    public void setPublication_Id(Integer publication_Id) { this.publication_Id = publication_Id; }
-
-    public Integer getChapter_Id() { return chapter_Id; }
-    public void setChapter_Id(Integer chapter_Id) { this.chapter_Id = chapter_Id; }
-
-    public String getChapter_Text() { return chapter_Text; }
-    public void setChapter_Text(String chapter_Text) { this.chapter_Text = chapter_Text; }
     
-	public void display() {
+  
+    public Chapter() 
+    {
+		  // TODO Auto-generated constructor stub
+	  }
+
+  //Initializing Getters and Setters
+    public Integer getPublication_ID() { return Publication_ID; }
+    public void setPublication_ID(Integer publication_ID) { this.Publication_ID = publication_ID; }
+
+    public Integer getChapter_ID() { return Chapter_ID; }
+    public void setChapter_ID(Integer chapter_ID) { this.Chapter_ID = chapter_ID; }
+
+    public String getChapter_text() { return Chapter_text; }
+    public void setChapter_text(String chapter_text) { this.Chapter_text = chapter_text; }
+    
+	  public void display() {
         System.out.println("Chapter Details");
         System.out.println("Publication ID: " + publication_Id);
         System.out.println("Chapter ID: " + chapter_Id);
         System.out.println("Text: " + chapter_Text);
      
         return;
-        
     }
 
     public String getMeta() {
         return "( publication_Id, chapter_Id, chapter_Text)";
     }
-
+  
+    @Override
     public String toString() {
         String res = "(";
         res = res + "'";
