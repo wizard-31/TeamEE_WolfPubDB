@@ -63,11 +63,11 @@ public class PublicationDAO {
             }
             Object[] o = rs.get(0);
             Publication publication = new Publication();
-            publication.setPublication_id((Integer) o[0]);
-            publication.setPublication_type((String) o[1]);
+            publication.setPublication_ID((Integer) o[0]);
+            publication.setPublication_Type((String) o[1]);
             publication.setTopic((String) o[2]);
             publication.setTitle((String) o[3]);
-            publication.setPublication_date((Date) o[4]);
+            publication.setPublication_Date((String) o[4]);
             return publication;
         } catch (SQLException e) {
             System.out.println("Unable to load Publication");
@@ -176,11 +176,11 @@ public class PublicationDAO {
             }
             Object[] o = rs.get(0);
             Publication publication = new Publication();
-            publication.setPublication_id((Integer) o[0]);
-            publication.setPublication_type((String) o[1]);
+            publication.setPublication_ID((Integer) o[0]);
+            publication.setPublication_Type((String) o[1]);
             publication.setTopic((String) o[2]);
             publication.setTitle((String) o[3]);
-            publication.setPublication_date((Date) o[4]);
+            publication.setPublication_Date((String) o[4]);
             return publication;
         } catch (SQLException e) {
             System.out.println("Unable to fetch Publication id");

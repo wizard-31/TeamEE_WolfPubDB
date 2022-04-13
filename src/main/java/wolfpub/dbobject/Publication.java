@@ -18,7 +18,11 @@ public class Publication
         this.Publication_Date = publication_Date;
     }
 
-    //Initializing Getters and Setters
+    public Publication() {
+		// TODO Auto-generated constructor stub
+	}
+
+	//Initializing Getters and Setters
     public Integer getPublication_ID() { return Publication_ID; }
     public void setPublication_ID(Integer publication_ID) { this.Publication_ID = publication_ID; }
 
@@ -70,4 +74,6 @@ public class Publication
         res = res + ")";
         return res;
     }
+
+	
 }
