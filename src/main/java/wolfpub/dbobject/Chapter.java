@@ -31,9 +31,9 @@ public class Chapter
     
 	  public void display() {
         System.out.println("Chapter Details");
-        System.out.println("Publication ID: " + publication_Id);
-        System.out.println("Chapter ID: " + chapter_Id);
-        System.out.println("Text: " + chapter_Text);
+        System.out.println("Publication ID: " + Publication_ID);
+        System.out.println("Chapter ID: " + Chapter_ID);
+        System.out.println("Text: " + Chapter_text);
      
         return;
     }
@@ -46,15 +46,15 @@ public class Chapter
     public String toString() {
         String res = "(";
         res = res + "'";
-        res = res + publication_Id;
+        res = res + Publication_ID;
         res = res + "'";
         res = res + ",";
         res = res + "'";
-        res = res + chapter_Id;
+        res = res + Chapter_ID;
         res = res + "'";
         res = res + ",";
         res = res + "'";
-        res = res + chapter_Text;
+        res = res + Chapter_text;
         res = res + "'";
         res = res + ")";
         return res;

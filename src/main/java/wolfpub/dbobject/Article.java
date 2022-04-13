@@ -28,9 +28,9 @@ public class Article
 
     public void display() {
         System.out.println("Article Details");
-        System.out.println("Article Id: " + article_Id);
-        System.out.println("topic: " + topic);
-        System.out.println("content: " + content);
+        System.out.println("Article Id: " + Article_ID);
+        System.out.println("topic: " + Topic);
+        System.out.println("content: " + Content);
      
         return;    
     }
@@ -44,11 +44,11 @@ public class Article
         String res = "(";
       
         res = res + "'";
-        res = res + topic;
+        res = res + Topic;
         res = res + "'";
         res = res + ",";
         res = res + "'";
-        res = res + content;
+        res = res + Content;
         res = res + "'";
         res = res + ")";
         return res;

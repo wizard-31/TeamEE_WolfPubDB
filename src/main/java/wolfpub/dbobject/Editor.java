@@ -35,8 +35,8 @@ public class Editor
     public void displayEditorIdAndName() 
     {
       System.out.println("Editor Details");
-      System.out.println("Id: " + staff_Id);
-      System.out.println("Type: " + name);
+      System.out.println("Id: " + Staff_ID);
+      System.out.println("Type: " + Name);
     return;
     }
 

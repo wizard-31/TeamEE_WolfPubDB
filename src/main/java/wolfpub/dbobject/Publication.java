@@ -36,11 +36,11 @@ public class Publication
     
     public void display() {
         System.out.println("Pulication Details");
-        System.out.println("Id: " + publication_id);
-        System.out.println("Type: " + publication_type);
-        System.out.println("Topic: " + topic);
-        System.out.println("Title: " + title);
-        System.out.println("Publication Date: " + publication_date);
+        System.out.println("Id: " + Publication_ID);
+        System.out.println("Type: " + Publication_Type);
+        System.out.println("Topic: " + Topic);
+        System.out.println("Title: " + Title);
+        System.out.println("Publication Date: " + Publication_Date);
         return;
         
     }
@@ -53,19 +53,19 @@ public class Publication
     public String toString() {
         String res = "(";
         res = res + "'";
-        res = res + publication_type;
+        res = res + Publication_Type;
         res = res + "'";
         res = res + ",";
         res = res + "'";
-        res = res + topic;
+        res = res + Topic;
         res = res + "'";
         res = res + ",";
         res = res + "'";
-        res = res + title;
+        res = res + Title;
         res = res + "'";
         res = res + ",";
         res = res + "'";
-        res = res + publication_date;
+        res = res + Publication_Date;
         res = res + "'";
         res = res + ")";
         return res;
