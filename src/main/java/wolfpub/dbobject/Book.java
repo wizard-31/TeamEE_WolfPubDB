@@ -2,17 +2,17 @@ package main.java.wolfpub.dbobject;
 
 import java.util.Date;
 
-public class Books
+public class Book
 {
     private Integer Publication_ID;
     private String Publication_Type;
     private String Topic;
     private String Title;
-    private Date Publication_Date;
+    private String Publication_Date;
     private String ISBN;
     private String Edition;
 
-    public Books(Integer publication_ID, String publication_Type, String topic, String title, Date publication_Date, String ISBN, String edition)
+    public Book(Integer publication_ID, String publication_Type, String topic, String title, String publication_Date, String ISBN, String edition)
     {
         this.Publication_ID = publication_ID;
         this.Publication_Type = publication_Type;
@@ -21,6 +21,19 @@ public class Books
         this.Publication_Date = publication_Date;
         this.ISBN = ISBN;
         this.Edition = edition;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "Publication_ID=" + Publication_ID +
+                ", Publication_Type='" + Publication_Type + '\'' +
+                ", Topic='" + Topic + '\'' +
+                ", Title='" + Title + '\'' +
+                ", Publication_Date='" + Publication_Date + '\'' +
+                ", ISBN='" + ISBN + '\'' +
+                ", Edition='" + Edition + '\'' +
+                '}';
     }
 
     //Initializing Getters and Setters
@@ -36,8 +49,8 @@ public class Books
     public String getTitle() { return Title; }
     public void setTitle(String title) { this.Title = title; }
 
-    public Date getPublication_Date() { return Publication_Date; }
-    public void setPublication_Date(Date publication_Date) { this.Publication_Date = publication_Date; }
+    public String getPublication_Date() { return Publication_Date; }
+    public void setPublication_Date(String publication_Date) { this.Publication_Date = publication_Date; }
 
     public String getISBN() { return ISBN; }
     public void setISBN(String ISBN) { this.ISBN = ISBN; }

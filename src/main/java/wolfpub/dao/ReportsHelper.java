@@ -3,12 +3,9 @@ package main.java.wolfpub.dao;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import static main.java.wolfpub.utils.PrintUtil.printResultSet;
-import static main.java.wolfpub.utils.PrintUtil.rsToList;
+import static main.java.wolfpub.utils.PrintUtil.*;
 
 public class ReportsHelper {
-
         public static void executeQuery1() {
         try {
             Connection conn = DBHelper.getConnection();

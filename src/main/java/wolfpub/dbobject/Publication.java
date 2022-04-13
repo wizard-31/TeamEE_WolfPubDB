@@ -8,15 +8,26 @@ public class Publication
     private String Publication_Type;
     private String Topic;
     private String Title;
-    private Date Publication_Date;
+    private String Publication_Date;
 
-    public Publication(Integer publication_ID, String publication_Type, String topic, String title, Date publication_Date)
+    public Publication(Integer publication_ID, String publication_Type, String topic, String title, String publication_Date)
     {
         this.Publication_ID = publication_ID;
         this.Publication_Type = publication_Type;
         this.Topic = topic;
         this.Title = title;
         this.Publication_Date = publication_Date;
+    }
+
+    @Override
+    public String toString() {
+        return "Publication{" +
+                "Publication_ID=" + Publication_ID +
+                ", Publication_Type='" + Publication_Type + '\'' +
+                ", Topic='" + Topic + '\'' +
+                ", Title='" + Title + '\'' +
+                ", Publication_Date='" + Publication_Date + '\'' +
+                '}';
     }
 
     //Initializing Getters and Setters
@@ -32,6 +43,6 @@ public class Publication
     public String getTitle() { return Title; }
     public void setTitle(String title) { this.Title = title; }
 
-    public Date getPublication_Date() { return Publication_Date; }
-    public void setPublication_Date(Date publication_Date) { this.Publication_Date = publication_Date; }
+    public String getPublication_Date() { return Publication_Date; }
+    public void setPublication_Date(String publication_Date) { this.Publication_Date = publication_Date; }
 }

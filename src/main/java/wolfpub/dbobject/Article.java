@@ -12,6 +12,15 @@ public class Article
         this.Content = content;
     }
 
+    @Override
+    public String toString() {
+        return "Article{" +
+                "Article_ID=" + Article_ID +
+                ", Topic='" + Topic + '\'' +
+                ", Content='" + Content + '\'' +
+                '}';
+    }
+
     //Initializing Getters and Setters
     public Integer getArticle_ID() { return Article_ID; }
     public void setArticle_ID(Integer article_ID) { this.Article_ID = article_ID; }
