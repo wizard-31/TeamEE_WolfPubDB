@@ -144,9 +144,7 @@ public class ReportsHelper {
 				ArrayList<String[]> rsList = rsToList(rs);
 				printResultSet(rsList);
 				DBHelper.close(conn);
-			}
-
-        } catch (Exception e) {
+			} catch (Exception e) {
             e.printStackTrace();
         }
     }
