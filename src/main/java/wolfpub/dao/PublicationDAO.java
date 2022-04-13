@@ -1,25 +1,21 @@
 package main.java.wolfpub.dao;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
-
+import main.java.wolfpub.utils.*;
 import main.java.wolfpub.dbobject.Publication;
 import main.java.wolfpub.dbobject.Chapter;
 import main.java.wolfpub.dbobject.Article;
 import main.java.wolfpub.dbobject.EditedBy;
 import main.java.wolfpub.dbobject.Contains;
-import main.java.wolfpub.dbobject.Editor;
-import main.java.wolfpub.dao.ReportsHelper;
 public class PublicationDAO {
 
     public static void saveData(Publication publication) {
@@ -46,8 +42,8 @@ public class PublicationDAO {
             Connection conn = DBHelper.getConnection();
             Statement selectStmt = conn.createStatement();
             ResultSet rs = selectStmt.executeQuery(" select * from publication;");
-            ArrayList < String[] > rsList = ReportsHelper.rsToList(rs);
-            ReportsHelper.printResultSet(rsList);
+            ArrayList < String[] > rsList = PrintUtil.rsToList(rs);
+            PrintUtil.printResultSet(rsList);
 
             DBHelper.close(conn);
 
@@ -86,9 +82,9 @@ public class PublicationDAO {
             Connection conn = DBHelper.getConnection();
             Statement selectStmt = conn.createStatement();
             ResultSet rs = selectStmt.executeQuery("select * from publication where title like '%" + title + "%'");
-            ArrayList < String[] > rsList = ReportsHelper.rsToList(rs);
+            ArrayList < String[] > rsList = PrintUtil.rsToList(rs);
             if (rsList != null)
-                ReportsHelper.printResultSet(rsList);
+            	PrintUtil.printResultSet(rsList);
 
             DBHelper.close(conn);
             if (rsList != null) {
@@ -307,8 +303,8 @@ public class PublicationDAO {
             Connection conn = DBHelper.getConnection();
             Statement selectStmt = conn.createStatement();
             ResultSet rs = selectStmt.executeQuery("Select * from edited_by where staff_id = '" + id + "'");
-            ArrayList < String[] > rsList = ReportsHelper.rsToList(rs);
-            ReportsHelper.printResultSet(rsList);
+            ArrayList < String[] > rsList = PrintUtil.rsToList(rs);
+            PrintUtil.printResultSet(rsList);
 
             DBHelper.close(conn);
 
@@ -329,8 +325,8 @@ public class PublicationDAO {
             Connection conn = DBHelper.getConnection();
             Statement selectStmt = conn.createStatement();
             ResultSet rs = selectStmt.executeQuery(" select staff_id,name from editor;");
-            ArrayList < String[] > rsList = ReportsHelper.rsToList(rs);
-            ReportsHelper.printResultSet(rsList);
+            ArrayList < String[] > rsList = PrintUtil.rsToList(rs);
+            PrintUtil.printResultSet(rsList);
 
             DBHelper.close(conn);
 
@@ -349,8 +345,8 @@ public class PublicationDAO {
             Connection conn = DBHelper.getConnection();
             Statement selectStmt = conn.createStatement();
             ResultSet rs = selectStmt.executeQuery(" select * from article;");
-            ArrayList < String[] > rsList = ReportsHelper.rsToList(rs);
-            ReportsHelper.printResultSet(rsList);
+            ArrayList < String[] > rsList = PrintUtil.rsToList(rs);
+            PrintUtil.printResultSet(rsList);
 
             DBHelper.close(conn);
 
@@ -370,8 +366,8 @@ public class PublicationDAO {
             Connection conn = DBHelper.getConnection();
             Statement selectStmt = conn.createStatement();
             ResultSet rs = selectStmt.executeQuery(" select * from chapter;");
-            ArrayList < String[] > rsList = ReportsHelper.rsToList(rs);
-            ReportsHelper.printResultSet(rsList);
+            ArrayList < String[] > rsList = PrintUtil.rsToList(rs);
+            PrintUtil.printResultSet(rsList);
 
             DBHelper.close(conn);
 
@@ -389,8 +385,8 @@ public class PublicationDAO {
             Connection conn = DBHelper.getConnection();
             Statement selectStmt = conn.createStatement();
             ResultSet rs = selectStmt.executeQuery(" select publication_id,title from publication;");
-            ArrayList < String[] > rsList = ReportsHelper.rsToList(rs);
-            ReportsHelper.printResultSet(rsList);
+            ArrayList < String[] > rsList = PrintUtil.rsToList(rs);
+            PrintUtil.printResultSet(rsList);
 
             DBHelper.close(conn);
 
