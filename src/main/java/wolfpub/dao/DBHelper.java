@@ -1,12 +1,14 @@
 package main.java.wolfpub.dao;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class DBHelper {
-
     static final String jdbcURL = DBConnection.getDBURL();
 
-    public static Connection getConnection() {
+  public static Connection getConnection() {
         try {
             // Load the driver. This creates an instance of the driver
             // and calls the registerDriver method to make MariaDB Thin
@@ -29,6 +31,39 @@ public class DBHelper {
             oops.printStackTrace();
         }
         return null;
+    }
+    
+    public static int executeUpdate(String query) throws SQLException {
+        try(Connection conn = getConnection();
+            Statement stmt = conn.createStatement();
+        ) {
+            int ans = stmt.executeUpdate(query);
+            close(conn);
+            return ans;
+        }
+    }
+    
+    public static List<Object[]> executeQueryUpdated(String query) throws SQLException {
+        try(Connection conn = getConnection();
+            Statement stmt = conn.createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+        ) {
+            List<Object[]> resultList = new ArrayList();
+            ResultSetMetaData resultSetMetaData = rs.getMetaData();
+            int count = resultSetMetaData.getColumnCount();
+            while(rs.next()) {
+                Object[] items = new Object[count];
+                for(int i=0; i< count; i++) {
+                    items[i] = rs.getObject(i+1);
+                }
+                resultList.add(items);
+            }
+            close(conn);
+            return resultList;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return Collections.emptyList();
+        }
     }
 
     public static void close(Connection conn) {

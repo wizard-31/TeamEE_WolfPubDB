@@ -127,7 +127,6 @@ public class ReportsHelper {
     }
     public static void executeQuery10() {
         try {
-
             Scanner scanner = new Scanner(System.in);
             System.out.println("Enter the start date(yyyy/mm/dd)  to view salaries: ");
             String startDate = scanner.nextLine();
@@ -135,16 +134,17 @@ public class ReportsHelper {
             System.out.println("Enter the end date(yyyy/mm/dd) to view salaries: ");
             String endDate = scanner.nextLine();
 
-            Connection conn = DBHelper.getConnection();
-            PreparedStatement selectStmt = conn.prepareStatement("select sum(salary) from payments natural join staff where payments.staff_id=staff.staff_id and payments.date_claimed between  ? and  ? ;");
+				Connection conn = DBHelper.getConnection();
+				PreparedStatement selectStmt = conn.prepareStatement("select sum(salary) from payments natural join staff where payments.staff_id=staff.staff_id and payments.date_claimed between  ? and  ? ;");
 
-            selectStmt.setString(1, startDate);
-            selectStmt.setString(2, endDate);
+				selectStmt.setString(1, startDate);
+				selectStmt.setString(2, endDate);
 
-            ResultSet rs = selectStmt.executeQuery();
-            ArrayList<String[]> rsList = rsToList(rs);
-            printResultSet(rsList);
-            DBHelper.close(conn);
+				ResultSet rs = selectStmt.executeQuery();
+				ArrayList<String[]> rsList = rsToList(rs);
+				printResultSet(rsList);
+				DBHelper.close(conn);
+			}
 
         } catch (Exception e) {
             e.printStackTrace();

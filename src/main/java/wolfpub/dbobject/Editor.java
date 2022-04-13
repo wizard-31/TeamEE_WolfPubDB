@@ -7,6 +7,10 @@ public class Editor
     private String Payment_Schedule;
     private String Type;
 
+	  public Editor() {
+		  // TODO Auto-generated constructor stub
+	  }
+
     public Editor(Integer staff_ID, String name, String payment_Schedule, String type)
     {
         this.Staff_ID = staff_ID;
@@ -27,5 +31,13 @@ public class Editor
 
     public String getType() { return Type; }
     public void setType(String type) { this.Type = type; }
-}
 
+    public void displayEditorIdAndName() 
+    {
+      System.out.println("Editor Details");
+      System.out.println("Id: " + staff_Id);
+      System.out.println("Type: " + name);
+    return;
+    }
+
+}

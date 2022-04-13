@@ -17,7 +17,31 @@ public class EditedBy
 
     public Integer getStaff_ID() { return Staff_ID; }
     public void setStaff_ID(Integer staff_ID) { this.Staff_ID = staff_ID; }
+
+    public static String getMeta() {
+        return "( publication_id, staff_id)";
+    }
+    
+    public String toString() {
+        String res = "(";
+        res = res + "'";
+        res = res + publication_Id;
+        res = res + "'";
+        res = res + ",";
+        res = res + "'";
+        res = res + staff_Id;
+        res = res + "'";
+  
+        res = res + ")";
+        return res;
+    }
+    
+    public void display() {
+        System.out.println("Publication Id and Editor Id Details ");
+        System.out.println("PublicationId: " + publication_Id);
+        System.out.println("Editor Id: " + staff_Id);
+       
+        return;
+        
+    }
 }
-
-
-

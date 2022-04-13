@@ -1,5 +1,4 @@
 package main.java.wolfpub.dbobject;
-
 import java.util.Date;
 
 public class Publication
@@ -19,17 +18,6 @@ public class Publication
         this.Publication_Date = publication_Date;
     }
 
-    @Override
-    public String toString() {
-        return "Publication{" +
-                "Publication_ID=" + Publication_ID +
-                ", Publication_Type='" + Publication_Type + '\'' +
-                ", Topic='" + Topic + '\'' +
-                ", Title='" + Title + '\'' +
-                ", Publication_Date='" + Publication_Date + '\'' +
-                '}';
-    }
-
     //Initializing Getters and Setters
     public Integer getPublication_ID() { return Publication_ID; }
     public void setPublication_ID(Integer publication_ID) { this.Publication_ID = publication_ID; }
@@ -45,4 +33,41 @@ public class Publication
 
     public String getPublication_Date() { return Publication_Date; }
     public void setPublication_Date(String publication_Date) { this.Publication_Date = publication_Date; }
+    
+    public void display() {
+        System.out.println("Pulication Details");
+        System.out.println("Id: " + publication_id);
+        System.out.println("Type: " + publication_type);
+        System.out.println("Topic: " + topic);
+        System.out.println("Title: " + title);
+        System.out.println("Publication Date: " + publication_date);
+        return;
+        
+    }
+
+    public String getMeta() {
+        return "( publication_type, topic, title, publication_date)";
+    }
+
+    @Override
+    public String toString() {
+        String res = "(";
+        res = res + "'";
+        res = res + publication_type;
+        res = res + "'";
+        res = res + ",";
+        res = res + "'";
+        res = res + topic;
+        res = res + "'";
+        res = res + ",";
+        res = res + "'";
+        res = res + title;
+        res = res + "'";
+        res = res + ",";
+        res = res + "'";
+        res = res + publication_date;
+        res = res + "'";
+        res = res + ")";
+        return res;
+    }
 }

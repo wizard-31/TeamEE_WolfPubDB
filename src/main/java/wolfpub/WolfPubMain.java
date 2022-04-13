@@ -4,6 +4,7 @@ import java.util.Scanner;
 import main.java.wolfpub.menu.Books;
 import main.java.wolfpub.menu.Distribution;
 import main.java.wolfpub.menu.Reports;
+import main.java.wolfpub.menu.Editing;
 
 public class WolfPubMain {
     public static void main(String[] arg) {
@@ -22,11 +23,15 @@ public class WolfPubMain {
 
             System.out.println("Please enter your input: ");
             choice = scanner.nextInt();
+            scanner.nextLine();
 
             switch(choice) {
                 case 1:
                     //TO DO: add call to editing and publishing here
-                    break;
+                	 System.out.println("Going to Publication...\n");
+                	 Editing.run();
+                     break;
+
 
                 case 2:
                     System.out.println("Going to Book Production...\n");
