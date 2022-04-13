@@ -25,11 +25,11 @@ public class EditedBy
     public String toString() {
         String res = "(";
         res = res + "'";
-        res = res + publication_Id;
+        res = res + Publication_ID;
         res = res + "'";
         res = res + ",";
         res = res + "'";
-        res = res + staff_Id;
+        res = res + Staff_ID;
         res = res + "'";
   
         res = res + ")";
@@ -38,8 +38,8 @@ public class EditedBy
     
     public void display() {
         System.out.println("Publication Id and Editor Id Details ");
-        System.out.println("PublicationId: " + publication_Id);
-        System.out.println("Editor Id: " + staff_Id);
+        System.out.println("PublicationId: " + Publication_ID);
+        System.out.println("Editor Id: " + Staff_ID);
        
         return;
         

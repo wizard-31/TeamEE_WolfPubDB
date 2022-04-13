@@ -51,7 +51,7 @@ public class PublicationHelper {
         Publication publication = PublicationDAO.loadById(id);
        
         if (publication !=null) {
-        	 String publciation_type = publication.getPublication_type();
+        	 String publciation_type = publication.getPublication_Type();
             publication.display();
             System.out.println(publciation_type);
             PublicationHelper.update(id, publciation_type);
@@ -303,7 +303,7 @@ public class PublicationHelper {
         Publication publication = new Publication();
         System.out.println("Enter Publication Type");
         String type = scanner.nextLine();
-        publication.setPublication_type(type);
+        publication.setPublication_Type(type);
         System.out.println("Enter Publication Topic");
         String topic = scanner.nextLine();
         publication.setTopic(topic);
@@ -324,7 +324,7 @@ public class PublicationHelper {
             e.printStackTrace();
         }
         java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
-        publication.setPublication_date(sqlDate);
+        publication.setPublication_Date(dateValue);
 
 
         return publication;
@@ -337,16 +337,16 @@ public class PublicationHelper {
         System.out.println("Enter Publciation Id");
         Integer publication_id = scanner.nextInt();
 
-        chapter.setPublication_Id(publication_id);
+        chapter.setPublication_ID(publication_id);
         System.out.println("Enter Chapter Id");
         Integer chapter_id = scanner.nextInt();
 
-        chapter.setChapter_Id(chapter_id);
+        chapter.setChapter_ID(chapter_id);
         scanner.nextLine();
         System.out.println("Enter Chapter Text");
 
         String chapter_text = scanner.nextLine();
-        chapter.setChapter_Text(chapter_text);
+        chapter.setChapter_text(chapter_text);
 
 
 

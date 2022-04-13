@@ -18,7 +18,11 @@ public class Publication
         this.Publication_Date = publication_Date;
     }
 
-    //Initializing Getters and Setters
+    public Publication() {
+		// TODO Auto-generated constructor stub
+	}
+
+	//Initializing Getters and Setters
     public Integer getPublication_ID() { return Publication_ID; }
     public void setPublication_ID(Integer publication_ID) { this.Publication_ID = publication_ID; }
 
@@ -36,11 +40,11 @@ public class Publication
     
     public void display() {
         System.out.println("Pulication Details");
-        System.out.println("Id: " + publication_id);
-        System.out.println("Type: " + publication_type);
-        System.out.println("Topic: " + topic);
-        System.out.println("Title: " + title);
-        System.out.println("Publication Date: " + publication_date);
+        System.out.println("Id: " + Publication_ID);
+        System.out.println("Type: " + Publication_Type);
+        System.out.println("Topic: " + Topic);
+        System.out.println("Title: " + Title);
+        System.out.println("Publication Date: " + Publication_Date);
         return;
         
     }
@@ -53,21 +57,23 @@ public class Publication
     public String toString() {
         String res = "(";
         res = res + "'";
-        res = res + publication_type;
+        res = res + Publication_Type;
         res = res + "'";
         res = res + ",";
         res = res + "'";
-        res = res + topic;
+        res = res + Topic;
         res = res + "'";
         res = res + ",";
         res = res + "'";
-        res = res + title;
+        res = res + Title;
         res = res + "'";
         res = res + ",";
         res = res + "'";
-        res = res + publication_date;
+        res = res + Publication_Date;
         res = res + "'";
         res = res + ")";
         return res;
     }
+
+	
 }

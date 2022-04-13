@@ -14,8 +14,8 @@ public class Contains
     public void display() 
     {
         System.out.println("Article and Publication Details");
-        System.out.println("Publication Id: " + publication_Id);
-        System.out.println("Article Id: " + article_Id);
+        System.out.println("Publication Id: " + Publication_ID);
+        System.out.println("Article Id: " + Article_ID);
         return;
     }
 
@@ -28,11 +28,11 @@ public class Contains
         String res = "(";
       
         res = res + "'";
-        res = res + publication_Id;
+        res = res + Publication_ID;
         res = res + "'";
         res = res + ",";
         res = res + "'";
-        res = res + article_Id;
+        res = res + Article_ID;
         res = res + "'";
         res = res + ")";
         return res;
