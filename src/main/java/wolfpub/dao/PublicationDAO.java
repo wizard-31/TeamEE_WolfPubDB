@@ -1,7 +1,6 @@
 package main.java.wolfpub.dao;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -63,11 +62,11 @@ public class PublicationDAO {
             }
             Object[] o = rs.get(0);
             Publication publication = new Publication();
-            publication.setPublication_id((Integer) o[0]);
-            publication.setPublication_type((String) o[1]);
+            publication.setPublicationID((Integer) o[0]);
+            publication.setPublicationType((String) o[1]);
             publication.setTopic((String) o[2]);
             publication.setTitle((String) o[3]);
-            publication.setPublication_date((Date) o[4]);
+            publication.setPublicationDate((String) o[4]);
             return publication;
         } catch (SQLException e) {
             System.out.println("Unable to load Publication");
@@ -111,32 +110,18 @@ public class PublicationDAO {
         conn.setAutoCommit(false);
 
 
-
-        if (field == "Date") {
-
-
-            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-            Date myDate = null;
-            try {
-                myDate = formatter.parse(value);
-            } catch (ParseException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-            java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
-
-
+        if ("Date".equals(field)) {
 
             //ResultSet rs = selectStmt.executeQuery("UPDATE publication SET "+field+ "= '" +sqlDate + "' WHERE publication_id = '"+ id + "'");
 
-            updateQuery = "UPDATE publication SET " + field + "= '" + sqlDate + "' WHERE publication_id = '" + id + "'";
+            updateQuery = "UPDATE publication SET " + field + "= '" + value + "' WHERE publication_id = '" + id + "'";
 
             if (type.equals("Book"))
-                updateQuery1 = "UPDATE books SET " + field + "= '" + sqlDate + "' WHERE publication_id = '" + id + "'";
+                updateQuery1 = "UPDATE books SET " + field + "= '" + value + "' WHERE publication_id = '" + id + "'";
 
 
             else
-                updateQuery1 = "UPDATE issue SET " + field + "= '" + sqlDate + "' WHERE publication_id = '" + id + "'";
+                updateQuery1 = "UPDATE issue SET " + field + "= '" + value + "' WHERE publication_id = '" + id + "'";
 
         } else {
             updateQuery = "UPDATE publication SET " + field + "= '" + value + "' WHERE publication_id = '" + id + "'";
@@ -176,11 +161,11 @@ public class PublicationDAO {
             }
             Object[] o = rs.get(0);
             Publication publication = new Publication();
-            publication.setPublication_id((Integer) o[0]);
-            publication.setPublication_type((String) o[1]);
+            publication.setPublicationID((Integer) o[0]);
+            publication.setPublicationType((String) o[1]);
             publication.setTopic((String) o[2]);
             publication.setTitle((String) o[3]);
-            publication.setPublication_date((Date) o[4]);
+            publication.setPublicationDate((String) o[4]);
             return publication;
         } catch (SQLException e) {
             System.out.println("Unable to fetch Publication id");
@@ -292,8 +277,6 @@ public class PublicationDAO {
     private String publication_type;
     private String topic;
     private String title;
-    private Date publication_date;
-
 
 
 

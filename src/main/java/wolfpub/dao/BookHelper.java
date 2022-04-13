@@ -70,11 +70,11 @@ public class BookHelper {
                     try {
                         Connection conn = DBHelper.getConnection();
                         PreparedStatement insertstmt = conn.prepareStatement(insertBookSql);
-                        insertstmt.setInt(1, book.getPublication_ID());
-                        insertstmt.setString(2, book.getPublication_Type());
+                        insertstmt.setInt(1, book.getPublicationID());
+                        insertstmt.setString(2, book.getPublicationType());
                         insertstmt.setString(3, book.getTopic());
                         insertstmt.setString(4, book.getTitle());
-                        insertstmt.setString(5, book.getPublication_Date());
+                        insertstmt.setString(5, book.getPublicationDate());
                         insertstmt.setString(6, book.getISBN());
                         insertstmt.setString(7, book.getEdition());
                         int row = insertstmt.executeUpdate();
@@ -103,11 +103,11 @@ public class BookHelper {
                     try {
                         Connection conn = DBHelper.getConnection();
                         PreparedStatement insertstmt = conn.prepareStatement(insertIssueSql);
-                        insertstmt.setInt(1, issue.getPublication_ID());
-                        insertstmt.setString(2, issue.getPublication_Type());
+                        insertstmt.setInt(1, issue.getPublicationID());
+                        insertstmt.setString(2, issue.getPublicationType());
                         insertstmt.setString(3, issue.getTopic());
                         insertstmt.setString(4, issue.getTitle());
-                        insertstmt.setString(5, issue.getPublication_Date());
+                        insertstmt.setString(5, issue.getPublicationDate());
                         insertstmt.setString(6, issue.getPeriodicity());
                         int row = insertstmt.executeUpdate();
                         DBHelper.close(conn);
@@ -231,8 +231,8 @@ public class BookHelper {
                                 case 3:
                                     System.out.println("Enter new Publication Date (YYYY-MM-DD): ");
                                     String newPubDate = scanner.nextLine();
-                                    book.setPublication_Date(newPubDate);
-                                    publication.setPublication_Date(newPubDate);
+                                    book.setPublicationDate(newPubDate);
+                                    publication.setPublicationDate(newPubDate);
                                     break;
                                 case 4:
                                     System.out.println("Enter new ISBN: ");
@@ -259,14 +259,14 @@ public class BookHelper {
                         updatestmt1.setString(1, book.getEdition());
                         updatestmt1.setString(2, book.getTopic());
                         updatestmt1.setString(3, book.getTitle());
-                        updatestmt1.setString(4, book.getPublication_Date());
+                        updatestmt1.setString(4, book.getPublicationDate());
                         updatestmt1.setString(5, book.getISBN());
-                        updatestmt1.setInt(6, book.getPublication_ID());
+                        updatestmt1.setInt(6, book.getPublicationID());
                         int row1 = updatestmt1.executeUpdate();
                         updatestmt2.setString(1, publication.getTopic());
                         updatestmt2.setString(2, publication.getTitle());
-                        updatestmt2.setString(3, publication.getPublication_Date());
-                        updatestmt2.setInt(4, publication.getPublication_ID());
+                        updatestmt2.setString(3, publication.getPublicationDate());
+                        updatestmt2.setInt(4, publication.getPublicationID());
                         int row2 = updatestmt2.executeUpdate();
 
                         if(row1 == row2)
@@ -338,8 +338,8 @@ public class BookHelper {
                                 case 3:
                                     System.out.println("Enter new Publication Date (YYYY-MM-DD): ");
                                     String newPubDate = scanner.nextLine();
-                                    issue.setPublication_Date(newPubDate);
-                                    publication.setPublication_Date(newPubDate);
+                                    issue.setPublicationDate(newPubDate);
+                                    publication.setPublicationDate(newPubDate);
                                     break;
                                 case 4:
                                     System.out.println("Enter new Periodicity: ");
@@ -358,14 +358,14 @@ public class BookHelper {
 
                         updatestmt1.setString(1, issue.getTopic());
                         updatestmt1.setString(2, issue.getTitle());
-                        updatestmt1.setString(3, issue.getPublication_Date());
+                        updatestmt1.setString(3, issue.getPublicationDate());
                         updatestmt1.setString(4, issue.getPeriodicity());
-                        updatestmt1.setInt(5, issue.getPublication_ID());
+                        updatestmt1.setInt(5, issue.getPublicationID());
 
                         updatestmt2.setString(1, publication.getTopic());
                         updatestmt2.setString(2, publication.getTitle());
-                        updatestmt2.setString(3, publication.getPublication_Date());
-                        updatestmt2.setInt(4, publication.getPublication_ID());
+                        updatestmt2.setString(3, publication.getPublicationDate());
+                        updatestmt2.setInt(4, publication.getPublicationID());
 
                         int row1 = updatestmt1.executeUpdate();
                         int row2 = updatestmt2.executeUpdate();
@@ -449,9 +449,9 @@ public class BookHelper {
                     try {
                         Connection conn = DBHelper.getConnection();
                         PreparedStatement insertstmt = conn.prepareStatement(insertChapterSql);
-                        insertstmt.setInt(1, chapter.getPublication_ID());
-                        insertstmt.setInt(2, chapter.getChapter_ID());
-                        insertstmt.setString(3, chapter.getChapter_text());
+                        insertstmt.setInt(1, chapter.getPublicationID());
+                        insertstmt.setInt(2, chapter.getChapterID());
+                        insertstmt.setString(3, chapter.getChapterText());
                         int row = insertstmt.executeUpdate();
                         DBHelper.close(conn);
                     } catch (Exception e) {
@@ -472,7 +472,7 @@ public class BookHelper {
                     try {
                         Connection conn = DBHelper.getConnection();
                         PreparedStatement insertstmt = conn.prepareStatement(insertArticleSql);
-                        insertstmt.setInt(1, article.getArticle_ID());
+                        insertstmt.setInt(1, article.getArticleID());
                         insertstmt.setString(2, article.getTopic());
                         insertstmt.setString(3, article.getContent());
                         int row = insertstmt.executeUpdate();
@@ -525,12 +525,12 @@ public class BookHelper {
                         Chapter chapter = new Chapter(pid, cid, attributes[2]);
                         System.out.println("Enter new Chapter Text");
                         String newChapterText = scanner.nextLine();
-                        chapter.setChapter_text(newChapterText);
+                        chapter.setChapterText(newChapterText);
 
                         PreparedStatement updatestmt = conn.prepareStatement(updateChapterSql);
-                        updatestmt.setString(1, chapter.getChapter_text());
-                        updatestmt.setInt(2, chapter.getPublication_ID());
-                        updatestmt.setInt(3, chapter.getChapter_ID());
+                        updatestmt.setString(1, chapter.getChapterText());
+                        updatestmt.setInt(2, chapter.getPublicationID());
+                        updatestmt.setInt(3, chapter.getChapterID());
                         int row = updatestmt.executeUpdate();
                         DBHelper.close(conn);
                     } catch (Exception e) {
@@ -580,7 +580,7 @@ public class BookHelper {
                         PreparedStatement updatestmt = conn.prepareStatement(updateArticleSql);
                         updatestmt.setString(1, article.getTopic());
                         updatestmt.setString(2, article.getContent());
-                        updatestmt.setInt(3, article.getArticle_ID());
+                        updatestmt.setInt(3, article.getArticleID());
                         int row = updatestmt.executeUpdate();
                         DBHelper.close(conn);
                     } catch (Exception e) {
@@ -612,9 +612,9 @@ public class BookHelper {
         try {
             Connection conn = DBHelper.getConnection();
             PreparedStatement insertstmt = conn.prepareStatement(insertPaymentsSql);
-            insertstmt.setInt(1, payments.getStaff_ID());
+            insertstmt.setInt(1, payments.getStaffID());
             insertstmt.setFloat(2, payments.getSalary());
-            insertstmt.setString(3, payments.getDate_Claimed());
+            insertstmt.setString(3, payments.getDateClaimed());
             int row = insertstmt.executeUpdate();
             DBHelper.close(conn);
         } catch (Exception e) {
@@ -664,13 +664,13 @@ public class BookHelper {
                     System.out.println("Enter Staff ID:");
                     staffId = scanner.nextInt();
 
-                    Writes_Books writer1 = new Writes_Books(staffId,pubId);
+                    WritesBooks writer1 = new WritesBooks(staffId,pubId);
                     try
                     {
                         Connection conn = DBHelper.getConnection();
                         PreparedStatement insertstmt = conn.prepareStatement(insertAuthorToBook);
-                        insertstmt.setInt(1,writer1.getStaff_ID());
-                        insertstmt.setInt(2,writer1.getPublication_ID());
+                        insertstmt.setInt(1,writer1.getStaffID());
+                        insertstmt.setInt(2,writer1.getPublicationID());
                         int row = insertstmt.executeUpdate();
                         DBHelper.close(conn);
                     }
@@ -686,13 +686,13 @@ public class BookHelper {
                     System.out.println("Enter Staff ID:");
                     staffId = scanner.nextInt();
 
-                    Writes_Articles writer2 = new Writes_Articles(staffId,artId);
+                    WritesArticles writer2 = new WritesArticles(staffId,artId);
                     try
                     {
                         Connection conn = DBHelper.getConnection();
                         PreparedStatement insertstmt = conn.prepareStatement(insertAuthorToArticles);
-                        insertstmt.setInt(1,writer2.getStaff_ID());
-                        insertstmt.setInt(2,writer2.getArticle_ID());
+                        insertstmt.setInt(1,writer2.getStaffID());
+                        insertstmt.setInt(2,writer2.getArticleID());
                         int row = insertstmt.executeUpdate();
                         DBHelper.close(conn);
                     }
@@ -711,14 +711,14 @@ public class BookHelper {
                     System.out.println("Enter Staff ID:");
                     staffId = scanner.nextInt();
 
-                    Writes_Chapters writer3 = new Writes_Chapters(staffId,pubId,chapId);
+                    WritesChapters writer3 = new WritesChapters(staffId,pubId,chapId);
                     try
                     {
                         Connection conn = DBHelper.getConnection();
                         PreparedStatement insertstmt = conn.prepareStatement(insertAuthorToChapters);
-                        insertstmt.setInt(1,writer3.getStaff_ID());
-                        insertstmt.setInt(2,writer3.getPublication_ID());
-                        insertstmt.setInt(3,writer3.getChapter_ID());
+                        insertstmt.setInt(1,writer3.getStaffID());
+                        insertstmt.setInt(2,writer3.getPublicationID());
+                        insertstmt.setInt(3,writer3.getChapterID());
                         int row = insertstmt.executeUpdate();
                         DBHelper.close(conn);
                     }
