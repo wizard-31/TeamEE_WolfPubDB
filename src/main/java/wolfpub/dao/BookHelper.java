@@ -191,9 +191,9 @@ public class BookHelper {
                     System.out.println("Input Publication Id of the Book: ");
                     id = scanner.nextInt();
                     scanner.nextLine();
-
+                    Connection conn = DBHelper.getConnection();
                     try {
-                        Connection conn = DBHelper.getConnection();
+                        //Connection conn = DBHelper.getConnection();
                         Statement selectstmt = conn.createStatement();
                         ResultSet rs = selectstmt.executeQuery(String.format(selectBookSql, id));
                         ArrayList<String[]> rsList = rsToList(rs);
@@ -252,22 +252,47 @@ public class BookHelper {
                         PreparedStatement updatestmt1 = conn.prepareStatement(updateBookSql);
                         PreparedStatement updatestmt2 = conn.prepareStatement(updatePublicationSql);
 
+                        //Begin Transaction Block
+                        conn.setAutoCommit(false);
                         updatestmt1.setString(1, book.getEdition());
                         updatestmt1.setString(2, book.getTopic());
                         updatestmt1.setString(3, book.getTitle());
                         updatestmt1.setString(4, book.getPublication_Date());
                         updatestmt1.setString(5, book.getISBN());
                         updatestmt1.setInt(6, book.getPublication_ID());
-
+                        int row1 = updatestmt1.executeUpdate();
                         updatestmt2.setString(1, publication.getTopic());
                         updatestmt2.setString(2, publication.getTitle());
                         updatestmt2.setString(3, publication.getPublication_Date());
                         updatestmt2.setInt(4, publication.getPublication_ID());
-                        int row1 = updatestmt1.executeUpdate();
                         int row2 = updatestmt2.executeUpdate();
-                        DBHelper.close(conn);
+
+                        if(row1 == row2)
+                        {
+                            System.out.println("Success...");
+                        }
+                        else
+                        {
+                            System.out.println("Failure...");
+                            throw new Exception("something about transactions!");
+                        }
+
+                        conn.commit();
+
+                        System.out.println("OP of Queries---" + row1 +" " +row2);
                     } catch (Exception e) {
-                        e.printStackTrace();
+                        //e.printStackTrace();
+                        System.out.println("Transaction Failed. Doing a Rollback.....");
+                        try{
+                            System.err.print("Transaction rolled back.");
+                            conn.rollback();
+                        }
+                        catch(SQLException e2){
+                            //e2.printStackTrace();
+                        }
+                    }
+                    finally {
+                        DBHelper.close(conn);
                     }
                     break;
                 case 2:
@@ -275,9 +300,8 @@ public class BookHelper {
                     System.out.println("Input Publication Id of Issue: ");
                     id = scanner.nextInt();
                     scanner.nextLine();
-
+                    conn = DBHelper.getConnection();
                     try {
-                        Connection conn = DBHelper.getConnection();
                         Statement selectstmt = conn.createStatement();
                         ResultSet rs = selectstmt.executeQuery(String.format(selectIssueSql, id));
                         ArrayList<String[]> rsList = rsToList(rs);
