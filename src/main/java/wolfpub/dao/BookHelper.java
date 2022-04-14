@@ -259,11 +259,15 @@ public class BookHelper {
                         updatestmt1.setString(4, book.getPublicationDate());
                         updatestmt1.setString(5, book.getISBN());
                         updatestmt1.setInt(6, book.getPublicationID());
+
+                        //first query
                         int row1 = updatestmt1.executeUpdate();
                         updatestmt2.setString(1, publication.getTopic());
                         updatestmt2.setString(2, publication.getTitle());
                         updatestmt2.setString(3, publication.getPublicationDate());
                         updatestmt2.setInt(4, publication.getPublicationID());
+
+                        //second query
                         int row2 = updatestmt2.executeUpdate();
 
                         if(row1 == row2)
@@ -284,6 +288,7 @@ public class BookHelper {
                         System.out.println("Transaction Failed. Doing a Rollback.....");
                         try{
                             System.err.print("Transaction rolled back.");
+                            // rollback
                             conn.rollback();
                         }
                         catch(SQLException e2){
