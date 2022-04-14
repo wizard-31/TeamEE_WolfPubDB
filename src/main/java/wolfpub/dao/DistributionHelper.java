@@ -24,6 +24,9 @@ public class DistributionHelper {
     final static String billOrderSql = "UPDATE distributor SET remaining_balance = remaining_balance + (select shipping_cost + cost from orders where order_id = %d) WHERE distributor_id= (select distributor_id from orders where order_id = %d);";
     final static String changeBalanceSql = "UPDATE distributor SET remaining_balance = remaining_balance - (select shipping_cost + cost from orders where order_id = %d) WHERE distributor_id= (select distributor_id from orders where order_id = %d);";
 
+    /**
+     * This function shows all distributors in the database
+     */
     public static void showDistributors() {
         try {
             Connection conn = DBHelper.getConnection();
@@ -37,6 +40,9 @@ public class DistributionHelper {
         }
     }
 
+    /**
+     * This function inserts a new distributor to database
+     */
     public static void insertDistributor(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input Name");
@@ -65,6 +71,9 @@ public class DistributionHelper {
         }
     }
 
+    /**
+     * This function updates distributor information by id
+     */
     public static void updateDistributor(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input Distributor Id");
@@ -134,6 +143,9 @@ public class DistributionHelper {
         }
     }
 
+    /**
+     * This function deletes distributor by id
+     */
     public static void deleteDistributor(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input Distributor Id");
@@ -149,6 +161,9 @@ public class DistributionHelper {
         }
     }
 
+    /**
+     * This function inserts an order from distributor for a book edition or an issue of a publication per distributor, for a certain date
+     */
     public static void inputOrder(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input Distributor Id");
@@ -182,6 +197,9 @@ public class DistributionHelper {
         }
     }
 
+    /**
+     * This function bills distributor for an order
+     */
     public static void billOrder(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input Order Id");
@@ -198,6 +216,9 @@ public class DistributionHelper {
         }
     }
 
+    /**
+     * This function changes outstanding balance of a distributor on receipt of a payment.
+     */
     public static void changeBalance(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input Order Id");
@@ -214,6 +235,9 @@ public class DistributionHelper {
         }
     }
 
+    /**
+     * This function shows all orders in the database
+     */
     public static void showOrders() {
         try {
             Connection conn = DBHelper.getConnection();

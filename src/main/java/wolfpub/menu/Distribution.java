@@ -6,6 +6,9 @@ import java.util.Scanner;
 
 public class Distribution {
 
+    /**
+     * Menu for Distribution part
+     */
     public static void run() {
         Scanner scanner = new Scanner(System.in);
         int choice = 1;
