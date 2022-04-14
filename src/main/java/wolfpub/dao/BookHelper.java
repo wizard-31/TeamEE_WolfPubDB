@@ -293,6 +293,7 @@ public class BookHelper {
                             //e2.printStackTrace();
                         }
                     }
+                    // End Transaction Block
                     finally {
                         DBHelper.close(conn);
                     }

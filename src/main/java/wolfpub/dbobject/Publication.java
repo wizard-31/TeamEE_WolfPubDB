@@ -20,9 +20,14 @@ public class Publication
         this.publicationDate = publicationDate;
     }
 
+
     //Initializing Getters and Setters
     public Integer getPublicationID() { return publicationID; }
     public void setPublicationID(Integer publicationID) { this.publicationID = publicationID; }
+    public Publication() {
+		// TODO Auto-generated constructor stub
+	}
+
 
     public String getPublicationType() { return publicationType; }
     public void setPublicationType(String publicationType) { this.publicationType = publicationType; }
@@ -57,4 +62,6 @@ public class Publication
         sb.append("('").append(publicationType).append("','").append(topic).append(',').append(title).append("','").append(publicationDate).append("')");
         return sb.toString();
     }
+
+	
 }

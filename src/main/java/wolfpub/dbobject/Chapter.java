@@ -34,7 +34,6 @@ public class Chapter
         System.out.println("Publication ID: " + publicationID);
         System.out.println("Chapter ID: " + chapterID);
         System.out.println("Text: " + chapterText);
-     
         return;
     }
 

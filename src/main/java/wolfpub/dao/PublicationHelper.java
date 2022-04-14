@@ -47,7 +47,7 @@ public class PublicationHelper {
         Publication publication = PublicationDAO.loadById(id);
        
         if (publication !=null) {
-        	 String publciation_type = publication.getPublicationType();
+        	  String publciation_type = publication.getPublicationType();
             publication.display();
             System.out.println(publciation_type);
             PublicationHelper.update(id, publciation_type);
@@ -322,7 +322,6 @@ public class PublicationHelper {
 //        java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
         publication.setPublicationDate(dateValue);
 
-
         return publication;
     }
 
@@ -332,7 +331,6 @@ public class PublicationHelper {
        
         System.out.println("Enter Publciation Id");
         Integer publicationId = scanner.nextInt();
-
         chapter.setPublicationID(publicationId);
         System.out.println("Enter Chapter Id");
         Integer chapterId = scanner.nextInt();

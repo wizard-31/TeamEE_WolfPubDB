@@ -31,7 +31,6 @@ public class Article
         System.out.println("Article Id: " + articleID);
         System.out.println("topic: " + topic);
         System.out.println("content: " + content);
-     
         return;    
     }
 
