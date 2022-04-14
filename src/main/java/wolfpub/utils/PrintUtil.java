@@ -5,8 +5,13 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/*
+The PrintUtil class contains commonly used functions for pretty-printing results obtained from the database in a form that is more aesthically pleasing, easier and more convenient to understand.
+ */
+
 public class PrintUtil {
 
+    // This function converts a Java ResultSet object, ideally containing the results of an SQL select statement or similar, to a Java Arraylist of String Arrays which is used later on to pretty-print
     public static ArrayList<String[]> rsToList(ResultSet rs) throws SQLException {
         ResultSetMetaData rsmd = rs.getMetaData();
         int noCols = rsmd.getColumnCount();
@@ -27,6 +32,7 @@ public class PrintUtil {
         return rsAsString;
     }
 
+    // This function is used to get the size of the largest field in a column which will be used to obtain the column width
     public static int getColSize(ArrayList<String[]> rsList, int colNo) {
         int size = 4;
         for(String[] arr : rsList) {
@@ -36,6 +42,7 @@ public class PrintUtil {
         return size + 2;
     }
 
+    // This function pretty-prints a Java ArrayList of Strings in the form a table so it easier to parse and understand for users who are seeing the output on the console.
     public static void printResultSet(ArrayList<String[]> rsList) {
 
         int noCols = rsList.get(0).length;

@@ -5,8 +5,18 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import static main.java.wolfpub.utils.PrintUtil.*;
 
+/*
+The reports helper class contains all the code for the execution of all the operations in the Reports Section of the narrative. This is used in the Reports class in the menu directory. Please see below for information about each function in the class.
+ */
 public class ReportsHelper {
+
+    /*
+    This function handles the following operation in the narrative:
+    Generate monthly reports: number and total price of copies of each publication bought per distributor per month;
+    It does so by creating a connection to the database, which it uses to run the query for this operation, and then obtaining and printing the ResultSet obtained from executing said query. It uses functions from the PrintUtil class for this.
+     */
         public static void executeQuery1() {
+
         try {
             Connection conn = DBHelper.getConnection();
             Statement selectStmt = conn.createStatement();
@@ -18,7 +28,11 @@ public class ReportsHelper {
             e.printStackTrace();
         }
     }
-
+    /*
+    This function handles the following operation in the narrative:
+   Generate monthly reports: Total revenue of the publishing house
+    It does so by creating a connection to the database, which it uses to run the query for this operation, and then obtaining and printing the ResultSet obtained from executing said query. It uses functions from the PrintUtil class for this.
+     */
     public static void executeQuery2() {
         try {
             Connection conn = DBHelper.getConnection();
@@ -32,7 +46,11 @@ public class ReportsHelper {
             e.printStackTrace();
         }
     }
-
+    /*
+    This function handles the following operation in the narrative:
+    Generate monthly reports: Total expenses (i.e., shipping costs and salaries)
+     It does so by creating a connection to the database, which it uses to run the query for this operation, and then obtaining and printing the ResultSet obtained from executing said query. It uses functions from the PrintUtil class for this.
+     */
     public static void executeQuery3() {
         try {
             Connection conn = DBHelper.getConnection();
@@ -47,6 +65,11 @@ public class ReportsHelper {
             e.printStackTrace();
         }
     }
+    /*
+This function handles the following operation in the narrative:
+    Generate monthly reports: Total expenses - ONLY shipping costs
+ It does so by creating a connection to the database, which it uses to run the query for this operation, and then obtaining and printing the ResultSet obtained from executing said query. It uses functions from the PrintUtil class for this.
+ */
     public static void executeQuery4() {
         try {
             Connection conn = DBHelper.getConnection();
@@ -60,6 +83,11 @@ public class ReportsHelper {
             e.printStackTrace();
         }
     }
+    /*
+This function handles the following operation in the narrative:
+   Generate monthly reports: Total expenses - ONLY salaries
+It does so by creating a connection to the database, which it uses to run the query for this operation, and then obtaining and printing the ResultSet obtained from executing said query. It uses functions from the PrintUtil class for this.
+ */
     public static void executeQuery5() {
         try {
             Connection conn = DBHelper.getConnection();
@@ -73,6 +101,11 @@ public class ReportsHelper {
             e.printStackTrace();
         }
     }
+    /*
+This function handles the following operation in the narrative:
+   Generate monthly reports: Calculate the total current number of distributors
+It does so by creating a connection to the database, which it uses to run the query for this operation, and then obtaining and printing the ResultSet obtained from executing said query. It uses functions from the PrintUtil class for this.
+ */
     public static void executeQuery6() {
         try {
             Connection conn = DBHelper.getConnection();
@@ -86,6 +119,11 @@ public class ReportsHelper {
             e.printStackTrace();
         }
     }
+    /*
+This function handles the following operation in the narrative:
+Generate monthly reports:  calculate total revenue (since inception) per city
+It does so by creating a connection to the database, which it uses to run the query for this operation, and then obtaining and printing the ResultSet obtained from executing said query. It uses functions from the PrintUtil class for this.
+ */
     public static void executeQuery7() {
         try {
             Connection conn = DBHelper.getConnection();
@@ -99,6 +137,11 @@ public class ReportsHelper {
             e.printStackTrace();
         }
     }
+    /*
+This function handles the following operation in the narrative:
+Generate monthly reports: calculate total revenue (since inception) per distributor
+It does so by creating a connection to the database, which it uses to run the query for this operation, and then obtaining and printing the ResultSet obtained from executing said query. It uses functions from the PrintUtil class for this.
+ */
     public static void executeQuery8() {
         try {
             Connection conn = DBHelper.getConnection();
@@ -112,6 +155,11 @@ public class ReportsHelper {
             e.printStackTrace();
         }
     }
+    /*
+This function handles the following operation in the narrative:
+Generate monthly reports: calculate total revenue (since inception) per location
+It does so by creating a connection to the database, which it uses to run the query for this operation, and then obtaining and printing the ResultSet obtained from executing said query. It uses functions from the PrintUtil class for this.
+ */
     public static void executeQuery9() {
         try {
             Connection conn = DBHelper.getConnection();
@@ -125,6 +173,11 @@ public class ReportsHelper {
             e.printStackTrace();
         }
     }
+    /*
+This function handles the following operation in the narrative:
+Generate monthly reports: Calculate total payments to the editors and authors, per time period
+It does so by creating a connection to the database, which it uses to run the query for this operation, and then obtaining and printing the ResultSet obtained from executing said query. It uses functions from the PrintUtil class for this.
+ */
     public static void executeQuery10() {
         try {
             Scanner scanner = new Scanner(System.in);
@@ -148,6 +201,11 @@ public class ReportsHelper {
             e.printStackTrace();
         }
     }
+    /*
+This function handles the following operation in the narrative:
+Generate monthly reports:Calculate total payments to the editors and authors per work type (book authorship, article authorship, or editorial work)
+It does so by creating a connection to the database, which it uses to run the query for this operation, and then obtaining and printing the ResultSet obtained from executing said query. It uses functions from the PrintUtil class for this.
+ */
     public static void executeQuery11() {
         try {
             Connection conn = DBHelper.getConnection();
