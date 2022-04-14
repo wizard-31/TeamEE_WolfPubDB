@@ -9,13 +9,9 @@ import main.java.wolfpub.dbobject.Chapter;
 import main.java.wolfpub.dbobject.Article;
 import main.java.wolfpub.dbobject.Contains;
 import java.sql.SQLException;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.*;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.Locale;
 import java.util.Scanner;
 
 public class PublicationHelper {
@@ -51,7 +47,7 @@ public class PublicationHelper {
         Publication publication = PublicationDAO.loadById(id);
        
         if (publication !=null) {
-        	 String publciation_type = publication.getPublication_Type();
+        	  String publciation_type = publication.getPublicationType();
             publication.display();
             System.out.println(publciation_type);
             PublicationHelper.update(id, publciation_type);
@@ -303,7 +299,7 @@ public class PublicationHelper {
         Publication publication = new Publication();
         System.out.println("Enter Publication Type");
         String type = scanner.nextLine();
-        publication.setPublication_Type(type);
+        publication.setPublicationType(type);
         System.out.println("Enter Publication Topic");
         String topic = scanner.nextLine();
         publication.setTopic(topic);
@@ -315,17 +311,16 @@ public class PublicationHelper {
 
         String dateValue = scanner.nextLine();
         //Converting String to Date
-        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date myDate = null;
-        try {
-            myDate = formatter.parse(dateValue);
-        } catch (ParseException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
-        publication.setPublication_Date(dateValue);
-
+//        DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+//        Date myDate = null;
+//        try {
+//            myDate = formatter.parse(dateValue);
+//        } catch (ParseException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//        java.sql.Date sqlDate = new java.sql.Date(myDate.getTime());
+        publication.setPublicationDate(dateValue);
 
         return publication;
     }
@@ -335,22 +330,17 @@ public class PublicationHelper {
         Chapter chapter = new Chapter();
        
         System.out.println("Enter Publciation Id");
-        Integer publication_id = scanner.nextInt();
-
-        chapter.setPublication_ID(publication_id);
+        Integer publicationId = scanner.nextInt();
+        chapter.setPublicationID(publicationId);
         System.out.println("Enter Chapter Id");
-        Integer chapter_id = scanner.nextInt();
+        Integer chapterId = scanner.nextInt();
 
-        chapter.setChapter_ID(chapter_id);
+        chapter.setChapterID(chapterId);
         scanner.nextLine();
         System.out.println("Enter Chapter Text");
 
-        String chapter_text = scanner.nextLine();
-        chapter.setChapter_text(chapter_text);
-
-
-
-
+        String chapterText = scanner.nextLine();
+        chapter.setChapterText(chapterText);
         return chapter;
     }
 
@@ -364,10 +354,6 @@ public class PublicationHelper {
 
         String content = scanner.nextLine();
         article.setContent(content);
-
-
-
-
         return article;
     }
 

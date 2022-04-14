@@ -2,36 +2,35 @@ package main.java.wolfpub.dbobject;
 
 public class Article
 {
-    private Integer Article_ID;
-    private String Topic;
-    private String Content;
+    private Integer articleID;
+    private String topic;
+    private String content;
   
     public Article() {
 		// TODO Auto-generated constructor stub
   	}
 
-    public Article(Integer article_ID, String topic, String content) {
-        this.Article_ID = article_ID;
-        this.Topic = topic;
-        this.Content = content;
+    public Article(Integer articleID, String topic, String content) {
+        this.articleID = articleID;
+        this.topic = topic;
+        this.content = content;
     }
 
     //Initializing Getters and Setters
-    public Integer getArticle_ID() { return Article_ID; }
-    public void setArticle_ID(Integer article_ID) { this.Article_ID = article_ID; }
+    public Integer getArticleID() { return articleID; }
+    public void setArticleID(Integer articleID) { this.articleID = articleID; }
 
-    public String getTopic() { return Topic; }
-    public void setTopic(String topic) { this.Topic = topic; }
+    public String getTopic() { return topic; }
+    public void setTopic(String topic) { this.topic = topic; }
 
-    public String getContent() { return Content; }
-    public void setContent(String content) { this.Content = content; }
+    public String getContent() { return content; }
+    public void setContent(String content) { this.content = content; }
 
     public void display() {
         System.out.println("Article Details");
-        System.out.println("Article Id: " + Article_ID);
-        System.out.println("topic: " + Topic);
-        System.out.println("content: " + Content);
-     
+        System.out.println("Article Id: " + articleID);
+        System.out.println("topic: " + topic);
+        System.out.println("content: " + content);
         return;    
     }
 
@@ -41,17 +40,9 @@ public class Article
 
     @Override
     public String toString() {
-        String res = "(";
-      
-        res = res + "'";
-        res = res + Topic;
-        res = res + "'";
-        res = res + ",";
-        res = res + "'";
-        res = res + Content;
-        res = res + "'";
-        res = res + ")";
-        return res;
+        StringBuilder sb = new StringBuilder();
+        sb.append("('").append(topic).append("','").append(content).append("')");
+        return sb.toString();
     }
 }
 
