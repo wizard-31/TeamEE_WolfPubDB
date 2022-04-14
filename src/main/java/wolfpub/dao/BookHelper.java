@@ -104,7 +104,7 @@ public class BookHelper {
                     pubTitle = scanner.nextLine();
                     System.out.println("Publication Date(YYYY-MM-DD): ");
                     pubDate = scanner.nextLine();
-                    System.out.println("Publication's Periodicity : ");
+                    System.out.println("Publication's Periodicity (weekly/bi-weekly/monthly) : ");
                     String pubPeriod = scanner.nextLine();
 
                     Issue issue = new Issue(pubId, pubType, pubTopic, pubTitle, pubDate, pubPeriod);
@@ -137,7 +137,6 @@ public class BookHelper {
     and close DB connections.
     */
     public static void displayBookOrIssue() {
-        //TO-DO Sub-Menus
         System.out.println("\nDisplay Book or Issue...");
         Scanner scanner = new Scanner(System.in);
         int choice = 1;
@@ -150,31 +149,103 @@ public class BookHelper {
             choice = scanner.nextInt();
             scanner.nextLine();
             int id;
+            int updateChoice =1;
+            String displayString;
             switch (choice) {
                 case 1:
                     System.out.println("Displaying Book...");
-                    try {
-                        Connection conn = DBHelper.getConnection();
-                        Statement selectstmt = conn.createStatement();
-                        ResultSet rs = selectstmt.executeQuery("Select * from books;");
-                        ArrayList<String[]> rsList = rsToList(rs);
-                        printResultSet(rsList);
-                        DBHelper.close(conn);
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                    while(updateChoice!=5)
+                    {
+                        System.out.println("Choose the condition by which you'd like to display");
+                        System.out.println("1. Topic");
+                        System.out.println("2. Title");
+                        System.out.println("3. Publication Date");
+                        System.out.println("4. Author's Name");
+                        System.out.println("5. Exit");
+                        updateChoice = scanner.nextInt();
+                        scanner.nextLine();
+                        switch (updateChoice) {
+                            case 1:
+                                System.out.println("Enter Topic to search by: ");
+                                String displayTopic = scanner.nextLine();
+                                displayString = "Select * from `books` where `topic`='"+displayTopic+"';";
+                                displayFunction(displayString);
+                                break;
+                            case 2:
+                                System.out.println("Enter Title to search by: ");
+                                String displayTitle = scanner.nextLine();
+                                displayString = "Select * from `books` where `title`='"+displayTitle+"';";
+                                displayFunction(displayString);
+                                break;
+                            case 3:
+                                System.out.println("Enter Publication Date to search by: ");
+                                String displayPubDate = scanner.nextLine();
+                                displayString = "Select * from `books` where `publication_date`='"+displayPubDate+"';";
+                                displayFunction(displayString);
+                                break;
+                            case 4:
+                                System.out.println("Enter Author's Name to search by: ");
+                                String authorName = scanner.nextLine();
+                                displayString = "Select name, books.topic, books.title,books.publication_date,ISBN, Edition from (books natural join writes_books) natural join staff where staff.name ='"+authorName+"';";
+                                displayFunction(displayString);
+                                break;
+                            case 5:
+                                break;
+                            default:
+                                System.out.println("Invalid option entered! Please enter a valid option.\n");
+
+                        }
                     }
                     break;
                 case 2:
                     System.out.println("Displaying Issue...");
-                    try {
-                        Connection conn = DBHelper.getConnection();
-                        Statement selectstmt = conn.createStatement();
-                        ResultSet rs = selectstmt.executeQuery("Select * from issue;");
-                        ArrayList<String[]> rsList = rsToList(rs);
-                        printResultSet(rsList);
-                        DBHelper.close(conn);
-                    } catch (Exception e) {
-                        e.printStackTrace();
+                    while(updateChoice!=5)
+                    {
+                        System.out.println("Choose the condition by which you'd like to display");
+                        System.out.println("1. Topic");
+                        System.out.println("2. Title");
+                        System.out.println("3. Publication Date");
+                        System.out.println("4. Periodicity");
+                        System.out.println("5. Author's Name");
+                        System.out.println("6. Exit");
+                        updateChoice = scanner.nextInt();
+                        scanner.nextLine();
+                        switch (updateChoice) {
+                            case 1:
+                                System.out.println("Enter Topic to search by: ");
+                                String displayTopic = scanner.nextLine();
+                                displayString = "Select * from `issue` where `topic`='"+displayTopic+"';";
+                                displayFunction(displayString);
+                                break;
+                            case 2:
+                                System.out.println("Enter Title to search by: ");
+                                String displayTitle = scanner.nextLine();
+                                displayString = "Select * from `issue` where `title`='"+displayTitle+"';";
+                                displayFunction(displayString);
+                                break;
+                            case 3:
+                                System.out.println("Enter Publication Date to search by: ");
+                                String displayPubDate = scanner.nextLine();
+                                displayString = "Select * from `issue` where `publication_date`='"+displayPubDate+"';";
+                                displayFunction(displayString);
+                                break;
+                            case 4:
+                                System.out.println("Enter Periodicity to search by: ");
+                                String displayPeriodicity = scanner.nextLine();
+                                displayString = "Select * from `issue` where `periodicity`='"+displayPeriodicity+"';";
+                                displayFunction(displayString);
+                                break;
+                            case 5:
+                                System.out.println("Enter Author's Name to search by: ");
+                                String authorName = scanner.nextLine();
+                                displayString = "Select name, issue.topic, issue.title,issue.publication_date,issue.periodicity from ((issue natural join contains) natural join staff) natural join writes_articles where staff.name ='"+authorName+"';";
+                                displayFunction(displayString);
+                                break;
+                            case 6:
+                                break;
+                            default:
+                                System.out.println("Invalid option entered! Please enter a valid option.\n");
+                        }
                     }
                     break;
                 case 3:
@@ -782,6 +853,26 @@ public class BookHelper {
                 default:
                     System.out.println("Invalid option entered! Please enter a valid option.\n");
             }
+        }
+    }
+
+    /*
+    This function uses the displayString sent from displayBookOrIssue() function and based on the criteria, it
+    executes and displays the result.
+    The function utilizes the DBHelper file to create and close DB connections.
+     */
+
+    public static void displayFunction(String displayString)
+    {
+        try {
+            Connection conn = DBHelper.getConnection();
+            Statement selectStmt = conn.createStatement();
+            ResultSet rs = selectStmt.executeQuery(displayString);
+            ArrayList<String[]> rsList = rsToList(rs);
+            printResultSet(rsList);
+            DBHelper.close(conn);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
