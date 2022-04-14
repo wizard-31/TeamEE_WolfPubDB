@@ -41,7 +41,7 @@ public class DistributionHelper {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input Name");
         String name = scanner.nextLine();
-        System.out.println("Input Type");
+        System.out.println("Input Type(wholesale distributor, bookstore, library)");
         String type = scanner.nextLine();
         System.out.println("Input Street Address");
         String address = scanner.nextLine();
@@ -97,7 +97,7 @@ public class DistributionHelper {
                         distributor.setName(name);
                         break;
                     case 2:
-                        System.out.println("Input type:");
+                        System.out.println("Input type(wholesale distributor, bookstore, library):");
                         distributor.setType(scanner.nextLine());
                         break;
                     case 3:
@@ -110,7 +110,7 @@ public class DistributionHelper {
                         break;
                     case 5:
                         System.out.println("Input phone number:");
-                        distributor.setType(scanner.nextLine());
+                        distributor.setPhoneNumber(scanner.nextLine());
                         break;
                     case 6:
                         System.out.println("Input contact person:");
