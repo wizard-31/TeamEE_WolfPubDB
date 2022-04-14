@@ -56,7 +56,6 @@ public class WolfPubMain {
             }
 
         }
-        scanner.close();
         return;
     }
 }

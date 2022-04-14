@@ -1,9 +1,5 @@
 package main.java.wolfpub.dao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
 public class DBConnection {
     public static String getDBURL()
     {

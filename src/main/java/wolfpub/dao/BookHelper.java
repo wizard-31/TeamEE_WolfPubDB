@@ -17,12 +17,12 @@ public class BookHelper {
     //Insert Queries
     static String insertBookSql = "INSERT INTO `books` (`publication_id`, `publication_type`, `topic`, `title`, `publication_date`,`ISBN`, `Edition`) VALUES (?,?,?,?,?,?,?);";
     static String insertIssueSql = "INSERT INTO `issue` (`publication_id`, `publication_type`, `topic`, `title`, `publication_date`,`periodicity`) VALUES (?,?,?,?,?,?);";
-    static String insertArticleSql = "INSERT INTO `article` (`article_id`,`topic`,`content`) VALUES (?,?,?);";
+    static String insertArticleSql = "INSERT INTO `article` (`topic`,`content`) VALUES (?,?);";
     static String insertChapterSql = "INSERT INTO `chapter` (`publication_id`,`chapter_id`,`chapter_text`) VALUES (?,?,?);";
     static String insertPaymentsSql = "INSERT INTO `payments`(`staff_id`, `salary`,`date_claimed`) VALUES (?,?,?);";
-    static String insertAuthorToBook = "INSERT INTO `writes_book` (`staff_id`,`publication_id`) VALUES (?,?);";
+    static String insertAuthorToBook = "INSERT INTO `writes_books` (`staff_id`,`publication_id`) VALUES (?,?);";
     static String insertAuthorToArticles = "INSERT INTO `writes_articles` (`staff_id`,`article_id`) VALUES (?,?);";
-    static String insertAuthorToChapters = "INSERT INTO `writes_book` (`staff_id`,`publication_id`,`chapter_id`) VALUES (?,?,?);";
+    static String insertAuthorToChapters = "INSERT INTO `writes_chapters` (`staff_id`,`publication_id`,`chapter_id`) VALUES (?,?,?);";
     //Update Queries
     static String updateBookSql = "UPDATE `books` SET `Edition` = ?, `topic` = ?, `title` = ?, `publication_date` = ?, `ISBN` = ? WHERE `publication_id` = ?;";
     static String updatePublicationSql = "UPDATE `publication` SET `topic` = ?, `title` = ?, `publication_date` = ? WHERE `publication_id` = ?;";
@@ -36,7 +36,6 @@ public class BookHelper {
         System.out.println("\nCreate Book or Issue...");
         Scanner scanner = new Scanner(System.in);
         int choice = 1;
-        loop:
         while (choice != 3) {
             System.out.println("\nWelcome to the WolfPub Book/Periodic Publication Production! Please make your choice from the options below:\n");
             System.out.println("1. Create Book");
@@ -116,12 +115,11 @@ public class BookHelper {
                     }
                     break;
                 case 3:
-                    break loop;
+                    break;
                 default:
                     System.out.println("Invalid option entered! Please enter a valid option.\n");
             }
         }
-        scanner.close();
     }
 
     public static void displayBookOrIssue() {
@@ -129,7 +127,6 @@ public class BookHelper {
         System.out.println("\nDisplay Book or Issue...");
         Scanner scanner = new Scanner(System.in);
         int choice = 1;
-        loop:
         while (choice != 3) {
             System.out.println("\nWelcome to the WolfPub Book/Periodic Publication Production! Please make your choice from the options below:\n");
             System.out.println("1. Display Book");
@@ -137,6 +134,7 @@ public class BookHelper {
             System.out.println("3. Exit");
 
             choice = scanner.nextInt();
+            scanner.nextLine();
             int id;
             switch (choice) {
                 case 1:
@@ -166,12 +164,11 @@ public class BookHelper {
                     }
                     break;
                 case 3:
-                    break loop;
+                    break;
                 default:
                     System.out.println("Invalid option entered! Please enter a valid option.\n");
             }
         }
-    scanner.close();
     }
 
     public static void updateBookOrIssue() {
@@ -381,7 +378,6 @@ public class BookHelper {
                     System.out.println("Invalid option entered! Please enter a valid option.\n");
             }
         }
-        scanner.close();
     }
 
     public static void deleteBookOrIssue() {
@@ -413,13 +409,13 @@ public class BookHelper {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                    break;
                 case 3:
                     break loop;
                 default:
                     System.out.println("Invalid option entered! Please enter a valid option.\n");
             }
         }
-        scanner.close();
     }
 
     public static void createChapterOrArticle() {
@@ -433,6 +429,7 @@ public class BookHelper {
             System.out.println("2. Create Article");
             System.out.println("3. Exit");
             choice = scanner.nextInt();
+            scanner.nextLine();
             int id;
             switch (choice) {
                 case 1:
@@ -461,21 +458,17 @@ public class BookHelper {
                     break;
                 case 2:
                     System.out.println("\n Welcome to the WolfPub. Please enter the following details.");
-                    System.out.println("\nArticle ID: ");
-                    int articleId = scanner.nextInt();
-                    scanner.nextLine();
                     System.out.println("Topic: ");
                     String articleTopic = scanner.nextLine();
                     System.out.println("Content: ");
                     String articleContent = scanner.nextLine();
 
-                    Article article = new Article(articleId, articleTopic, articleContent);
+                    Article article = new Article(articleTopic, articleContent);
                     try {
                         Connection conn = DBHelper.getConnection();
                         PreparedStatement insertstmt = conn.prepareStatement(insertArticleSql);
-                        insertstmt.setInt(1, article.getArticleID());
-                        insertstmt.setString(2, article.getTopic());
-                        insertstmt.setString(3, article.getContent());
+                        insertstmt.setString(1, article.getTopic());
+                        insertstmt.setString(2, article.getContent());
                         int row = insertstmt.executeUpdate();
                         DBHelper.close(conn);
                     } catch (Exception e) {
@@ -488,7 +481,6 @@ public class BookHelper {
                     System.out.println("Invalid option entered! Please enter a valid option.\n");
             }
         }
-        scanner.close();
     }
 
     public static void updateChapterOrArticle() {
@@ -594,7 +586,6 @@ public class BookHelper {
                     System.out.println("Invalid option entered! Please enter a valid option.\n");
             }
         }
-        scanner.close();
     }
 
     public static void insertPaymentEditorAuthor() {
@@ -606,7 +597,7 @@ public class BookHelper {
         System.out.println("Staff's Salary: ");
         Float staffSalary = scanner.nextFloat();
         scanner.nextLine();
-        System.out.println("Date Claimed: ");
+        System.out.println("Date Claimed (YYYY-MM-DD): ");
         String dateClaimed = scanner.nextLine();
 
         Payments payments = new Payments(staffId, staffSalary, dateClaimed);
@@ -621,7 +612,6 @@ public class BookHelper {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        scanner.close();
     }
 
     public static void trackPaymentClaims() {
@@ -640,7 +630,6 @@ public class BookHelper {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        scanner.close();
     }
 
     public static void enterAuthorForPublications() {
@@ -734,7 +723,6 @@ public class BookHelper {
                     System.out.println("Invalid option entered! Please enter a valid option.\n");
             }
         }
-        scanner.close();
     }
 
 }

@@ -49,7 +49,7 @@ public class Editing {
 			            break;
 			        case 7:
 			            System.out.println("Going back to main menu...\n");
-			            WolfPubMain.main(null);
+			            return;
 			           
 			        default:
 			            System.out.println("Invalid option entered! Please enter a valid option.\n");

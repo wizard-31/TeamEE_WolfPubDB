@@ -8,9 +8,6 @@ public class Publication
     private String title;
     private String publicationDate;
 
-    public Publication() {
-    }
-
     public Publication(Integer publicationID, String publicationType, String topic, String title, String publicationDate)
     {
         this.publicationID = publicationID;
@@ -59,7 +56,7 @@ public class Publication
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("('").append(publicationType).append("','").append(topic).append(',').append(title).append("','").append(publicationDate).append("')");
+        sb.append("('").append(publicationType).append("','").append(topic).append("','").append(title).append("','").append(publicationDate).append("')");
         return sb.toString();
     }
 

@@ -16,6 +16,11 @@ public class Article
         this.content = content;
     }
 
+    public Article(String topic, String content) {
+        this.topic = topic;
+        this.content = content;
+    }
+
     //Initializing Getters and Setters
     public Integer getArticleID() { return articleID; }
     public void setArticleID(Integer articleID) { this.articleID = articleID; }

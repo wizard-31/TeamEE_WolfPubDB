@@ -21,7 +21,8 @@ public class PublicationHelper {
         Publication publication = getPublicationDetails();
         PublicationDAO.saveData(publication);
 
-        WolfPubMain.main(null);
+        //WolfPubMain.main(null);
+        return;
 
 
     }
@@ -56,12 +57,7 @@ public class PublicationHelper {
         } else
             System.out.println("Publication Not Found");
 
-
-
         return;
-
-
-
 
     }
 
@@ -124,7 +120,8 @@ public class PublicationHelper {
                 update(id, type);
                 break;
             case 2:
-                WolfPubMain.main(null);
+                //WolfPubMain.main(null);
+                return;
 
 
         }
@@ -217,7 +214,6 @@ public class PublicationHelper {
 
     public static void addArticle() {
         Article article = getArticleDetails();
-
         Integer article_id = PublicationDAO.insertArticle(article);
         System.out.println("1. Do you also want to insert into publication \n2. Go Back");
         System.out.println("Enter an Option");
@@ -233,9 +229,8 @@ public class PublicationHelper {
                 PublicationDAO.addPublicationArticle(contains);
                 break;
             case 2:
-                WolfPubMain.main(null);
-
-                break;
+                //WolfPubMain.main(null);
+                return;
 
         }
 
@@ -346,7 +341,7 @@ public class PublicationHelper {
 
     public static Article getArticleDetails() {
         Article article = new Article();
-        scanner.nextLine();
+        //scanner.nextLine();
         System.out.println("Enter Topic");
         String topic = scanner.nextLine();
         article.setTopic(topic);

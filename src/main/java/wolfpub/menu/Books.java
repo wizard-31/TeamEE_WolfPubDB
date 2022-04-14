@@ -15,7 +15,7 @@ public class Books {
             System.out.println("4. Delete a new Book Edition or New Issue of a Publication");
             System.out.println("5. Enter a new Article or Chapter");
             System.out.println("6. Update an Article or a Chapter");
-            System.out.println("7. Enter Authors for Article");
+            System.out.println("7. Enter Authors for Publications");
             System.out.println("8. Enter Payment for Author or Editor");
             System.out.println("9. Track Payment Claims");
             System.out.println("10. Exit");
@@ -40,5 +40,6 @@ public class Books {
                     System.out.println("Invalid option entered! Please enter a valid option.\n");
             }
         }
+
     }
 }

@@ -28,7 +28,7 @@ public class PublicationDAO {
             //publciationDisplay.display();
 
         } catch (SQLException e) {
-            System.out.println("Unable to add Customer!");
+            System.out.println("Unable to add!");
             System.out.println("Caught SQLException " + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
         }
     }
@@ -66,7 +66,7 @@ public class PublicationDAO {
             publication.setPublicationType((String) o[1]);
             publication.setTopic((String) o[2]);
             publication.setTitle((String) o[3]);
-            publication.setPublicationDate((String) o[4]);
+            publication.setPublicationDate(o[4].toString());
             return publication;
         } catch (SQLException e) {
             System.out.println("Unable to load Publication");
@@ -165,7 +165,7 @@ public class PublicationDAO {
             publication.setPublicationType((String) o[1]);
             publication.setTopic((String) o[2]);
             publication.setTitle((String) o[3]);
-            publication.setPublicationDate((String) o[4]);
+            publication.setPublicationDate(o[4].toString());
             return publication;
         } catch (SQLException e) {
             System.out.println("Unable to fetch Publication id");
@@ -183,7 +183,7 @@ public class PublicationDAO {
 
             System.out.println("Chapter Added!");
         } catch (SQLException e) {
-            System.out.println("Unable to add Customer!");
+            System.out.println("Unable to add!");
             System.out.println("Caught SQLException " + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
         }
     }
@@ -212,7 +212,7 @@ public class PublicationDAO {
 
 
         } catch (SQLException e) {
-            System.out.println("Unable to add Customer!");
+            System.out.println("Unable to add!");
             System.out.println("Caught SQLException " + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
         }
         return article_id;
@@ -226,7 +226,7 @@ public class PublicationDAO {
 
             System.out.println("Publication  Added with Article !");
         } catch (SQLException e) {
-            System.out.println("Unable to add Customer!");
+            System.out.println("Unable to add!");
             System.out.println("Caught SQLException " + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
         }
     }
@@ -268,7 +268,7 @@ public class PublicationDAO {
             System.out.println("Editor Added to the Publication!");
             editedBy.display();
         } catch (SQLException e) {
-            System.out.println("Unable to add Customer!");
+            System.out.println("Unable to add!");
             System.out.println("Caught SQLException " + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
         }
     }
