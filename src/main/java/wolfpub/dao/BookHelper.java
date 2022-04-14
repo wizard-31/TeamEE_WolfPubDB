@@ -1,20 +1,25 @@
 package main.java.wolfpub.dao;
 
 import main.java.wolfpub.dbobject.*;
-
 import static main.java.wolfpub.utils.PrintUtil.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/*
+The Book helper class contains all the necessary functions required for the operations in the
+"Production of a book edition or of an issue of a publication" part of the narrative.
+This file is used in the Books.java file's menu directory.
+*/
+
 public class BookHelper {
-    //Select Queries
+    //Select Queries for operations
     static String selectBookSql = "SELECT * FROM `books` WHERE `publication_id` = %d;";
     static String selectIssueSql = "SELECT * FROM `issue` WHERE `publication_id` = %d;";
     static String selectChapterSql = "SELECT * FROM `chapter` WHERE `publication_id` = %d AND `chapter_id` = %d;";
     static String selectArticleSql = "SELECT * FROM `article` WHERE `article_id` = %d;";
     static String selectPaymentAddresseeSql = "SELECT * FROM `payments` natural join `staff` WHERE `staff_id` = %d;";
-    //Insert Queries
+    //Insert Queries for operations
     static String insertBookSql = "INSERT INTO `books` (`publication_id`, `publication_type`, `topic`, `title`, `publication_date`,`ISBN`, `Edition`) VALUES (?,?,?,?,?,?,?);";
     static String insertIssueSql = "INSERT INTO `issue` (`publication_id`, `publication_type`, `topic`, `title`, `publication_date`,`periodicity`) VALUES (?,?,?,?,?,?);";
     static String insertArticleSql = "INSERT INTO `article` (`topic`,`content`) VALUES (?,?);";
@@ -23,15 +28,19 @@ public class BookHelper {
     static String insertAuthorToBook = "INSERT INTO `writes_books` (`staff_id`,`publication_id`) VALUES (?,?);";
     static String insertAuthorToArticles = "INSERT INTO `writes_articles` (`staff_id`,`article_id`) VALUES (?,?);";
     static String insertAuthorToChapters = "INSERT INTO `writes_chapters` (`staff_id`,`publication_id`,`chapter_id`) VALUES (?,?,?);";
-    //Update Queries
+    //Update Queries for operations
     static String updateBookSql = "UPDATE `books` SET `Edition` = ?, `topic` = ?, `title` = ?, `publication_date` = ?, `ISBN` = ? WHERE `publication_id` = ?;";
     static String updatePublicationSql = "UPDATE `publication` SET `topic` = ?, `title` = ?, `publication_date` = ? WHERE `publication_id` = ?;";
     static String updateIssueSql = "UPDATE `issue` SET `topic` = ?, `title` = ?, `publication_date` = ?, `periodicity` = ? WHERE `publication_id` = ?;";
     static String updateChapterSql = "UPDATE `chapter` SET `chapter_text` = ? WHERE `publication_id` = ? AND `chapter_id` = ?;";
     static String updateArticleSql = "UPDATE `article` SET `topic` = ?, `content` = ? WHERE `article_id`=?;";
-    //Delete Queries
+    //Delete Queries for operations
     static String deletePublicationSql = "DELETE FROM `publication` WHERE `publication_id` = %d;";
 
+    /*
+    This function handles creation of a Book or an Issue. It uses the insertBookSql
+    and insertIssueSql commands declared above, and utilizes the DBHelper file to create and close DB connections.
+    */
     public static void createBookOrIssue() {
         System.out.println("\nCreate Book or Issue...");
         Scanner scanner = new Scanner(System.in);
@@ -122,6 +131,11 @@ public class BookHelper {
         }
     }
 
+    /*
+    This function displays Books or Issues based on the choice entered - topic, date, author's name.
+    It uses the selectBookSql and selectIssueSql commands declared above, and utilizes the DBHelper file to create
+    and close DB connections.
+    */
     public static void displayBookOrIssue() {
         //TO-DO Sub-Menus
         System.out.println("\nDisplay Book or Issue...");
@@ -171,6 +185,12 @@ public class BookHelper {
         }
     }
 
+    /*
+    This function updates Book or Issue using the updateBookSql, updateIssueSql and updatePublicationSql commands
+    declared above. Since Books and Issues are part of Publications via an is-a relationship. Any changes made to Books
+    or Issues are automatically reflected in Publications as well.
+    The function utilizes the DBHelper file to create and close DB connections.
+     */
     public static void updateBookOrIssue() {
         System.out.println("\nUpdate Book or Issue...");
         Scanner scanner = new Scanner(System.in);
@@ -385,6 +405,13 @@ public class BookHelper {
         }
     }
 
+    /*
+    This function deletes Book or Issues using the deletePublicationSql command declared above. Since we have a
+    cascade delete setup in Publications table, any changes on delete will be reflected on Books and Issues. This way,
+    we directly make the delete operation on the Publication table, as the primary key for all three tables are
+    publication_id
+    The function utilizes the DBHelper file to create and close DB connections.
+     */
     public static void deleteBookOrIssue() {
         System.out.println("\nDelete Book or Issue...");
         Scanner scanner = new Scanner(System.in);
@@ -423,6 +450,10 @@ public class BookHelper {
         }
     }
 
+    /*
+    This function handles creation of a Chapter or an Article. It uses the insertChapterSql
+    and insertArticleSql commands declared above, and utilizes the DBHelper file to create and close DB connections.
+    */
     public static void createChapterOrArticle() {
         System.out.println("\nCreate Chapter or Article...");
         Scanner scanner = new Scanner(System.in);
@@ -488,6 +519,10 @@ public class BookHelper {
         }
     }
 
+    /*
+    This function updates Chapter or Article using the updateChapterSql and updateArticleSql commands declared
+    above. The function utilizes the DBHelper file to create and close DB connections.
+     */
     public static void updateChapterOrArticle() {
         System.out.println("\nUpdate Chapter or Article...");
         Scanner scanner = new Scanner(System.in);
@@ -593,6 +628,13 @@ public class BookHelper {
         }
     }
 
+    /*
+    The function allows insertion of Payment Data for staffs. It uses insertPaymentsSql command to execute the process.
+    Since Editors and Authors are staffs by nature, we use staff_id as primary key to identify them and therefore use
+    it to add any new payments to the table.
+    The function utilizes the DBHelper file to create and close DB connections.
+     */
+
     public static void insertPaymentEditorAuthor() {
         System.out.println("\nEnter Payment for Staff(Editor/Author). Please enter the following payment details.");
         Scanner scanner = new Scanner(System.in);
@@ -619,6 +661,13 @@ public class BookHelper {
         }
     }
 
+    /*
+    The function allows users to track the payments claimed by the staffs. It uses selectPaymentAddresseeSql to execute
+    the needful. Using the staff_id, we check the payments table joined with staffs table to see which staff claimed
+    the payment and also the number of claims made by that staff.
+    The function utilizes the DBHelper file to create and close DB connections.
+     */
+
     public static void trackPaymentClaims() {
         System.out.println("\nTrack Payment Claimed by Addressee...");
         Scanner scanner = new Scanner(System.in);
@@ -636,6 +685,12 @@ public class BookHelper {
             e.printStackTrace();
         }
     }
+
+    /*
+    This function helps user to link an Author to a Publication(Book/Chapter/Article). It uses the insertAuthorToBook,
+    insertAuthorToArticle and insertAuthorToChapter commands declared above.
+    The function utilizes the DBHelper file to create and close DB connections.
+     */
 
     public static void enterAuthorForPublications() {
         System.out.println("\nEnter Authors for Publications...");
