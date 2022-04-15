@@ -61,7 +61,7 @@ public class BookHelper {
                     System.out.println("\nPublication ID: ");
                     pubId = scanner.nextInt();
                     scanner.nextLine();
-                    System.out.println("Publication Type: ");
+                    System.out.println("Publication Type(Book): ");
                     pubType = scanner.nextLine();
                     System.out.println("Publication Topic: ");
                     pubTopic = scanner.nextLine();
@@ -199,7 +199,7 @@ public class BookHelper {
                     break;
                 case 2:
                     System.out.println("Displaying Issue...");
-                    while(updateChoice!=5)
+                    while(updateChoice!=6)
                     {
                         System.out.println("Choose the condition by which you'd like to display");
                         System.out.println("1. Topic");
@@ -283,7 +283,6 @@ public class BookHelper {
                     scanner.nextLine();
                     Connection conn = DBHelper.getConnection();
                     try {
-                        //Connection conn = DBHelper.getConnection();
                         Statement selectstmt = conn.createStatement();
                         ResultSet rs = selectstmt.executeQuery(String.format(selectBookSql, id));
                         ArrayList<String[]> rsList = rsToList(rs);
@@ -373,7 +372,6 @@ public class BookHelper {
 
                         conn.commit();
 
-                        //System.out.println("OP of Queries---" + row1 +" " +row2);
                     } catch (Exception e) {
                         //e.printStackTrace();
                         System.out.println("Transaction Failed. Doing a Rollback.....");
@@ -436,7 +434,7 @@ public class BookHelper {
                                     publication.setPublicationDate(newPubDate);
                                     break;
                                 case 4:
-                                    System.out.println("Enter new Periodicity: ");
+                                    System.out.println("Enter new Periodicity(weekly/bi-weekly/monthly): ");
                                     String newPeriodicity = scanner.nextLine();
                                     issue.setPeriodicity(newPeriodicity);
                                     break;
