@@ -4,7 +4,14 @@ import main.java.wolfpub.dao.ReportsHelper;
 
 import java.util.Scanner;
 
+/*
+This class contains the code to display a menu for the Report section of the narrative.
+Each operation in the narrative is shown as an option which the user can enter and see the output of. This is all done through the only function in the class run(). Please see the function for further information.
+ */
+
 public class Reports {
+
+    // This function displays all the operations mentioned in the narrative of the project, and lists them out as options through a switch case statement in Java enclosed in a while loop. There is also an option for the user to exit this menu and return to the main menu of the application. The user can enter input taken through a Java Scanner for this.
     public static void run() {
         Scanner scanner = new Scanner(System.in);
         int choice = 1;
@@ -81,6 +88,5 @@ public class Reports {
         }
         scanner.close();
         return;
-
     }
 }

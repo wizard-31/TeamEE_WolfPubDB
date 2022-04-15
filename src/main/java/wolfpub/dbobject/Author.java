@@ -2,28 +2,28 @@ package main.java.wolfpub.dbobject;
 
 public class Author
 {
-    private Integer Staff_ID;
-    private String Name;
-    private String Payment_Schedule;
-    private String Type;
+    private Integer staffID;
+    private String name;
+    private String paymentSchedule;
+    private String type;
 
-    public Author(Integer staff_ID, String name, String payment_Schedule, String type) {
-        this.Staff_ID = staff_ID;
-        this.Name = name;
-        this.Payment_Schedule = payment_Schedule;
-        this.Type = type;
+    public Author(Integer staffID, String name, String paymentSchedule, String type) {
+        this.staffID = staffID;
+        this.name = name;
+        this.paymentSchedule = paymentSchedule;
+        this.type = type;
     }
 
     //Initializing Getters and Setters
-    public Integer getStaff_ID() { return Staff_ID; }
-    public void setStaff_ID(Integer staff_ID) { this.Staff_ID = staff_ID; }
+    public Integer getStaffID() { return staffID; }
+    public void setStaffID(Integer staffID) { this.staffID = staffID; }
 
-    public String getName() { return Name; }
-    public void setName(String name) { this.Name = name; }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    public String getPayment_Schedule() { return Payment_Schedule; }
-    public void setPayment_Schedule(String payment_Schedule) { this.Payment_Schedule = payment_Schedule; }
+    public String getPaymentSchedule() { return paymentSchedule; }
+    public void setPaymentSchedule(String paymentSchedule) { this.paymentSchedule = paymentSchedule; }
 
-    public String getType() { return Type; }
-    public void setType(String type) { this.Type = type; }
+    public String getType() { return type; }
+    public void setType(String type) { this.type = type; }
 }

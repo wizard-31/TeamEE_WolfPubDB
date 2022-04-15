@@ -1,20 +1,39 @@
 package main.java.wolfpub.dbobject;
 
 public class Contains
-{
-    private Integer Publication_ID;
-    private Integer Article_ID;
+{   
+    private Integer publicationID;
+    private Integer articleID;
 
-    public Contains(Integer publication_ID, Integer article_ID)
+    public Contains(Integer publicationID, Integer articleID)
     {
-        this.Publication_ID = publication_ID;
-        this.Article_ID = article_ID;
+        this.publicationID = publicationID;
+        this.articleID = articleID;
+    }
+  
+    public void display() 
+    {
+        System.out.println("Article and Publication Details");
+        System.out.println("Publication Id: " + publicationID);
+        System.out.println("Article Id: " + articleID);
+        return;
     }
 
-    //Initializing Getters and Setters
-    public Integer getPublication_ID() { return Publication_ID; }
-    public void setPublication_ID(Integer publication_ID) { this.Publication_ID = publication_ID; }
+    public String getMeta() {
+        return "( publication_Id, article_Id)";
+    }
 
-    public Integer getArticle_ID() { return Article_ID; }
-    public void setArticle_ID(Integer article_ID) { this.Article_ID = article_ID; }
+    public String toString() 
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("('").append(publicationID).append("','").append(articleID).append("')");
+        return sb.toString();
+    }
+  
+    //Initializing Getters and Setters
+    public Integer getPublication_ID() { return publicationID; }
+    public void setPublication_ID(Integer publication_ID) { this.publicationID = publication_ID; }
+
+    public Integer getArticle_ID() { return articleID; }
+    public void setArticle_ID(Integer article_ID) { this.articleID = article_ID; }
 }

@@ -2,22 +2,36 @@ package main.java.wolfpub.dbobject;
 
 public class EditedBy
 {
-    private Integer Publication_ID;
-    private Integer Staff_ID;
+    private Integer publicationID;
+    private Integer staffID;
 
     public EditedBy(Integer publication_ID, Integer staff_ID)
     {
-        this.Publication_ID = publication_ID;
-        this.Staff_ID = staff_ID;
+        this.publicationID = publication_ID;
+        this.staffID = staff_ID;
     }
 
     //Initializing Getters and Setters
-    public Integer getPublication_ID() { return Publication_ID; }
-    public void setPublication_ID(Integer publication_ID) { this.Publication_ID = publication_ID; }
+    public Integer getPublicationID() { return publicationID; }
+    public void setPublicationID(Integer publicationID) { this.publicationID = publicationID; }
 
-    public Integer getStaff_ID() { return Staff_ID; }
-    public void setStaff_ID(Integer staff_ID) { this.Staff_ID = staff_ID; }
+    public Integer getStaffID() { return staffID; }
+    public void setStaffID(Integer staffID) { this.staffID = staffID; }
+
+    public static String getMeta() {
+        return "( publication_id, staff_id)";
+    }
+    
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("('").append(publicationID).append("','").append(staffID).append("')");
+        return sb.toString();
+    }
+    
+    public void display() {
+        System.out.println("Publication Id and Editor Id Details ");
+        System.out.println("PublicationId: " + publicationID);
+        System.out.println("Editor Id: " + staffID);
+        return;
+    }
 }
-
-
-

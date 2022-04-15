@@ -1,33 +1,36 @@
 package main.java.wolfpub.dbobject;
 
-public class Issue
+public class Book
 {
     private Integer publicationID;
     private String publicationType;
     private String topic;
     private String title;
     private String publicationDate;
-    private String periodicity;
+    private String ISBN;
+    private String edition;
 
-    public Issue(Integer publicationID, String publicationType, String topic, String title, String publicationDate, String periodicity)
+    public Book(Integer publicationID, String publicationType, String topic, String title, String publicationDate, String ISBN, String edition)
     {
         this.publicationID = publicationID;
         this.publicationType = publicationType;
         this.topic = topic;
         this.title = title;
         this.publicationDate = publicationDate;
-        this.periodicity = periodicity;
+        this.ISBN = ISBN;
+        this.edition = edition;
     }
 
     @Override
     public String toString() {
-        return "Issue{" +
+        return "Book{" +
                 "Publication_ID=" + publicationID +
                 ", Publication_Type='" + publicationType + '\'' +
                 ", Topic='" + topic + '\'' +
                 ", Title='" + title + '\'' +
                 ", Publication_Date='" + publicationDate + '\'' +
-                ", Periodicity='" + periodicity + '\'' +
+                ", ISBN='" + ISBN + '\'' +
+                ", Edition='" + edition + '\'' +
                 '}';
     }
 
@@ -47,6 +50,9 @@ public class Issue
     public String getPublicationDate() { return publicationDate; }
     public void setPublicationDate(String publicationDate) { this.publicationDate = publicationDate; }
 
-    public String getPeriodicity() { return periodicity; }
-    public void setPeriodicity(String periodicity) { this.periodicity = periodicity; }
+    public String getISBN() { return ISBN; }
+    public void setISBN(String ISBN) { this.ISBN = ISBN; }
+
+    public String getEdition() { return edition; }
+    public void setEdition(String edition) { this.edition = edition; }
 }
