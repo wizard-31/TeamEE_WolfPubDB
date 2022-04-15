@@ -39,7 +39,7 @@ public class Publication
     public void setPublicationDate(String publicationDate) { this.publicationDate = publicationDate; }
     
     public void display() {
-        System.out.println("Pulication Details");
+        System.out.println("Publication Details");
         System.out.println("Id: " + publicationID);
         System.out.println("Type: " + publicationType);
         System.out.println("Topic: " + topic);

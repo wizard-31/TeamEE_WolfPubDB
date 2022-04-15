@@ -87,7 +87,7 @@ public class PublicationHelper {
                 }   
                 break;
             case 3:
-                System.out.println("1.Enter the Date");
+                System.out.println("1.Enter the Date(YYYY-MM-DD");
                 String dateValue = scanner.nextLine();
                 String date = "publication_date";
                 try {
