@@ -39,7 +39,7 @@ public class ReportsHelper {
             System.out.println("Total revenue of the publishing house");
             Connection conn = DBHelper.getConnection();
             Statement selectStmt = conn.createStatement();
-            ResultSet rs = selectStmt.executeQuery("select sum(cost) as total_revenue from orders;");
+            ResultSet rs = selectStmt.executeQuery("select sum(cost) + sum(shipping_cost) as total_revenue from orders;");
             ArrayList<String[]> rsList = rsToList(rs);
             printResultSet(rsList);
             DBHelper.close(conn);

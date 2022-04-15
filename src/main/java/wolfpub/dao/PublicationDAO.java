@@ -110,17 +110,6 @@ public class PublicationDAO {
             int value1=Stmt.executeUpdate(updateQuery);
             
             int value2= Stmt.executeUpdate(updateQuery1);
-             
-            if(value1==value2)
-            {
-                System.out.println("Success...");
-
-            }
-            else
-            {
-                System.out.println("Failure...");
-                throw new Exception("something about transactions!");
-            }
 
         conn.commit();
         } catch (Exception e) {
